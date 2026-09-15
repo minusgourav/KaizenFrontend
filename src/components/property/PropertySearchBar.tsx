@@ -83,13 +83,11 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
           : "bg-white border-slate-200 shadow-slate-200/50"
       }`}
     >
-      {/* Main Bar Row */}
       <div
         className={`flex flex-col md:flex-row items-stretch gap-0 divide-y md:divide-y-0 md:divide-x ${
           isDark ? "divide-slate-800" : "divide-slate-100"
         }`}
       >
-        {/* Location */}
         <label
           className={`flex-1 flex items-center gap-2.5 px-4 py-3.5 transition-colors cursor-pointer ${
             isDark ? "focus-within:bg-slate-800/50" : "focus-within:bg-slate-50"
@@ -112,7 +110,6 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
           </div>
         </label>
 
-        {/* Check-in */}
         <label
           className={`flex items-center gap-2.5 px-4 py-3.5 transition-colors cursor-pointer ${
             isDark ? "focus-within:bg-slate-800/50" : "focus-within:bg-slate-50"
@@ -134,7 +131,6 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
           </div>
         </label>
 
-        {/* Check-out */}
         <label
           className={`flex items-center gap-2.5 px-4 py-3.5 transition-colors cursor-pointer ${
             isDark ? "focus-within:bg-slate-800/50" : "focus-within:bg-slate-50"
@@ -157,7 +153,6 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
           </div>
         </label>
 
-        {/* Bedrooms */}
         <label
           className={`flex items-center gap-2.5 px-4 py-3.5 transition-colors cursor-pointer ${
             isDark ? "focus-within:bg-slate-800/50" : "focus-within:bg-slate-50"
@@ -191,7 +186,6 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
           </div>
         </label>
 
-        {/* Action Buttons */}
         <div className="flex items-center gap-2 px-4 py-3.5 shrink-0">
           <button
             type="button"
@@ -238,7 +232,6 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
         </div>
       </div>
 
-      {/* Advanced Filters Drawer */}
       {showAdvanced && (
         <div
           className={`flex flex-wrap items-center gap-6 px-5 py-4 border-t transition-colors ${
@@ -247,7 +240,6 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
               : "border-slate-100 bg-slate-50/70"
           }`}
         >
-          {/* Min rent */}
           <label className="flex items-center gap-2 min-w-[140px]">
             <DollarSign className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
             <div className="flex flex-col">
@@ -269,7 +261,6 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
 
           <div className={`w-px h-8 ${isDark ? "bg-slate-800" : "bg-slate-200"}`} />
 
-          {/* Max rent */}
           <label className="flex items-center gap-2 min-w-[140px]">
             <DollarSign className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
             <div className="flex flex-col">
@@ -291,7 +282,6 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
 
           <div className={`w-px h-8 ${isDark ? "bg-slate-800" : "bg-slate-200"}`} />
 
-          {/* Sort */}
           <label className="flex items-center gap-2">
             <ArrowUpDown className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
             <div className="flex flex-col">

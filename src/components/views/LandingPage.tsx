@@ -24,6 +24,7 @@ interface LandingPageProps {
   onHowItWorks: () => void;
   onSelectDeal: (deal: Property) => void;
   onRateDeal: (deal: Property) => void;
+  onBookCall?: () => void;
   properties: Property[];
   favorites: any[];
   onToggleFavorite: (id: string | number, e?: React.MouseEvent) => void;
@@ -95,6 +96,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   onHowItWorks,
   onSelectDeal,
   onRateDeal,
+  onBookCall,
   properties,
   favorites,
   onToggleFavorite,
@@ -109,9 +111,25 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onBrowseProperties({
-      city: cityFilter,
+      city: cityFilter || undefined,
       bedrooms: bedsFilter ? Number(bedsFilter) : undefined,
     });
+  };
+  
+  const handlePrimaryCallAction = () => {
+    if (onBookCall) {
+      onBookCall();
+    } else {
+      onBrowseProperties();
+    }
+  };
+
+  const handleSecondaryCallAction = () => {
+    if (onBookCall) {
+      onBookCall();
+    } else {
+      onHowItWorks();
+    }
   };
 
   const DEFAULT_FEATURED: any[] = [
@@ -200,7 +218,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             }`}
           >
             Acquire &amp; Monetize{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-500">
+            <span className=" ">
               Turnkey Luxury Properties
             </span>
           </motion.h1>
@@ -227,10 +245,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
           >
             <button
-              onClick={() => onBrowseProperties()}
+              onClick={handlePrimaryCallAction}
               className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl text-sm uppercase tracking-wider shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 font-mono transition-all cursor-pointer hover:scale-105 active:scale-95"
             >
-              <span>Explore Villa Catalog</span>
+              <span>Book a Call</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
@@ -292,39 +310,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="sm:col-span-3">
               <button
                 type="submit"
-                className="w-full h-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl text-xs font-mono uppercase tracking-wider shadow-md shadow-blue-600/25 flex items-center justify-center gap-1.5 cursor-pointer transition-all"
+                className="w-full h-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl text-xs font-mono uppercase tracking-wider shadow-md shadow-blue-600/25 flex items-center justify-center gap-1.5 cursor-pointer transition-all hover:scale-105"
               >
                 <Search className="w-4 h-4" />
-                Find Deals
+                Find Properties
               </button>
             </div>
           </motion.form>
 
-          {/* Stats Counters Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 max-w-4xl mx-auto">
-            {[
-              { label: "Listed Asset Value", value: "$12.4M+" },
-              { label: "Avg Occupancy Rate", value: "98.2%" },
-              { label: "Hold Lock Time", value: "15 Mins" },
-              { label: "Community Rating", value: "4.95 ★" },
-            ].map((stat, idx) => (
-              <div
-                key={idx}
-                className={`p-4 rounded-2xl border text-center transition-all ${
-                  isDark
-                    ? "bg-slate-900/60 border-slate-800/80"
-                    : "bg-white/80 border-slate-200 shadow-sm"
-                }`}
-              >
-                <p className="text-xl sm:text-2xl font-black font-mono text-blue-600 dark:text-blue-400">
-                  {stat.value}
-                </p>
-                <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold mt-1">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
+
         </div>
       </section>
 
@@ -520,10 +514,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <button
-              onClick={() => onBrowseProperties()}
-              className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl text-sm uppercase tracking-wider shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 font-mono transition-all cursor-pointer"
+              onClick={handlePrimaryCallAction}
+              className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl text-sm uppercase tracking-wider shadow-xl shadow-blue-600/30 flex items-center justify-center gap-2 font-mono transition-all cursor-pointer hover:scale-105"
             >
-              <span>Explore Catalog Now</span>
+              <span>Book a Call</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

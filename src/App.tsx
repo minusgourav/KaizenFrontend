@@ -25,6 +25,9 @@ import { BookingsView } from "./components/views/BookingsView";
 import { HowItWorks } from "./components/views/HowItWorks";
 import { PropertiesView } from "./components/views/PropertiesView";
 import { LandingPage } from "./components/views/LandingPage";
+import { LandlordsView } from "./components/views/LandlordsView";
+import { InvestorsView } from "./components/views/InvestorsView";
+import { BookCallModal } from "./components/common/BookCallModal";
 import { RatePropertyModal } from "./components/common/RatePropertyModal";
 import { useAsync } from "./hooks/useAsync";
 import { api } from "./api/client";
@@ -34,6 +37,8 @@ import { AdminLayout } from "./components/admin/AdminLayout";
 export type TabType =
   | "landing"
   | "properties"
+  | "landlords"
+  | "investors"
   | "how-it-works"
   | "blogs"
   | "stories"
@@ -47,6 +52,8 @@ export type TabType =
 const DESKTOP_NAV: { key: TabType; label: string; authOnly?: boolean }[] = [
   { key: "landing", label: "Home" },
   { key: "properties", label: "Properties" },
+  { key: "landlords", label: "Landlords" },
+  { key: "investors", label: "Investors" },
   { key: "how-it-works", label: "How It Works" },
   { key: "experiences", label: "Experience" },
   { key: "about", label: "About" },
@@ -78,6 +85,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>("landing");
 
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showBookCallModal, setShowBookCallModal] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [selectedDeal, setSelectedDeal] = useState<any | null>(null);
   const [showLockPurchaseModal, setShowLockPurchaseModal] = useState(false);
@@ -107,9 +115,9 @@ export default function App() {
 
   const isAdmin = Boolean(
     user?.is_staff ||
-      user?.is_superuser ||
-      user?.username === "admin" ||
-      user?.email === "admin@kaizen.com",
+    user?.is_superuser ||
+    user?.username === "admin" ||
+    user?.email === "admin@kaizen.com",
   );
 
   const triggerNotification = (
@@ -134,7 +142,9 @@ export default function App() {
   useEffect(() => {
     const handleLocationCheck = () => {
       const hash = window.location.hash;
-      if (hash === "#admin" || activeTab === "admin") {
+      const pathname = window.location.pathname.replace(/^\//, "");
+
+      if (hash === "#admin" || pathname === "admin") {
         if (!isAuthenticated) {
           setActiveTab("properties");
           window.location.hash = "";
@@ -151,12 +161,34 @@ export default function App() {
         } else {
           setActiveTab("admin");
         }
+        return;
+      }
+
+      const target = hash ? hash.replace("#", "") : pathname;
+      if (
+        [
+          "properties",
+          "landlords",
+          "investors",
+          "how-it-works",
+          "experiences",
+          "about",
+          "dashboard",
+          "favorites",
+          "bookings",
+        ].includes(target)
+      ) {
+        setActiveTab(target as TabType);
       }
     };
     handleLocationCheck();
     window.addEventListener("hashchange", handleLocationCheck);
-    return () => window.removeEventListener("hashchange", handleLocationCheck);
-  }, [isAuthenticated, isAdmin, activeTab]);
+    window.addEventListener("popstate", handleLocationCheck);
+    return () => {
+      window.removeEventListener("hashchange", handleLocationCheck);
+      window.removeEventListener("popstate", handleLocationCheck);
+    };
+  }, [isAuthenticated, isAdmin]);
 
   if (activeTab === "admin") {
     return (
@@ -189,7 +221,9 @@ export default function App() {
     >
       {/* 1. Ambient Mesh Gradient Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className={`absolute inset-0 ${isDark ? "bg-[#090D16]" : "bg-[#F8FAFC]"}`} />
+        <div
+          className={`absolute inset-0 ${isDark ? "bg-[#090D16]" : "bg-[#F8FAFC]"}`}
+        />
         <motion.div
           className={`absolute -top-[12%] -left-[12%] w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] rounded-full blur-[130px] ${
             isDark ? "bg-blue-600/15" : "bg-blue-500/10"
@@ -220,7 +254,9 @@ export default function App() {
         >
           <div className="relative flex flex-col items-center gap-6">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-0.5 shadow-2xl shadow-blue-600/40 border border-white/20 animate-kaizen-logo flex items-center justify-center">
-              <span className="text-white font-extrabold text-2xl font-sans">改</span>
+              <span className="text-white font-extrabold text-2xl font-sans">
+                改
+              </span>
             </div>
 
             <div className="text-center space-y-1">
@@ -286,18 +322,17 @@ export default function App() {
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
               className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/30 border border-white/20"
             >
-              <span className="text-white font-extrabold text-base font-sans">改</span>
+              <span className="text-white font-extrabold text-base font-sans">
+                改
+              </span>
             </motion.div>
             <div>
               <span
-                className={`font-extrabold text-lg tracking-[0.08em] leading-none block font-heading ${
+                className={`font-extrabold text-xl tracking-[0.08em] leading-none block font-heading ${
                   isDark ? "text-white" : "text-slate-900"
                 }`}
               >
                 KAIZEN
-              </span>
-              <span className="text-[9px] text-blue-600 dark:text-blue-400 font-mono font-bold tracking-widest block uppercase mt-0.5">
-                REAL ESTATE
               </span>
             </div>
           </motion.div>
@@ -316,8 +351,8 @@ export default function App() {
                       ? "text-white"
                       : "text-blue-600"
                     : isDark
-                    ? "text-slate-400 hover:text-white"
-                    : "text-slate-500 hover:text-slate-900"
+                      ? "text-slate-400 hover:text-white"
+                      : "text-slate-500 hover:text-slate-900"
                 }`}
               >
                 {item.label}
@@ -349,8 +384,8 @@ export default function App() {
                     ? "text-rose-400 bg-rose-950/40 border-rose-500/40"
                     : "text-rose-600 bg-rose-50 border-rose-200"
                   : isDark
-                  ? "text-slate-300 hover:text-rose-400 hover:bg-slate-800/60 border-slate-700/60"
-                  : "text-slate-600 hover:text-rose-600 hover:bg-slate-100 border-slate-200"
+                    ? "text-slate-300 hover:text-rose-400 hover:bg-slate-800/60 border-slate-700/60"
+                    : "text-slate-600 hover:text-rose-600 hover:bg-slate-100 border-slate-200"
               }`}
             >
               <Heart
@@ -463,9 +498,7 @@ export default function App() {
                           setUserDropdownOpen(false);
                         }}
                         className={`w-full text-left px-3 py-2 text-xs font-medium rounded-xl flex items-center gap-2 transition-colors ${
-                          isDark
-                            ? "hover:bg-slate-800"
-                            : "hover:bg-slate-100"
+                          isDark ? "hover:bg-slate-800" : "hover:bg-slate-100"
                         }`}
                       >
                         <LayoutDashboard className="w-4 h-4 text-blue-600 dark:text-blue-400" />{" "}
@@ -543,6 +576,8 @@ export default function App() {
           {(
             [
               "properties",
+              "landlords",
+              "investors",
               "how-it-works",
               "blogs",
               "stories",
@@ -559,8 +594,8 @@ export default function App() {
                     ? "bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-600/30"
                     : "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20"
                   : isDark
-                  ? "bg-slate-900/60 border-slate-800 text-slate-300"
-                  : "bg-white border-slate-200 text-slate-700"
+                    ? "bg-slate-900/60 border-slate-800 text-slate-300"
+                    : "bg-white border-slate-200 text-slate-700"
               }`}
             >
               {tab.replace("-", " ")}
@@ -583,6 +618,7 @@ export default function App() {
                   setActiveTab("properties");
                 }}
                 onHowItWorks={() => setActiveTab("how-it-works")}
+                onBookCall={() => setShowBookCallModal(true)}
                 onSelectDeal={setSelectedDeal}
                 onRateDeal={handleRateDeal}
                 properties={landingProperties}
@@ -594,8 +630,8 @@ export default function App() {
             </motion.div>
           </AnimatePresence>
         ) : activeTab === "dashboard" ||
-        activeTab === "favorites" ||
-        activeTab === "bookings" ? (
+          activeTab === "favorites" ||
+          activeTab === "bookings" ? (
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -672,7 +708,11 @@ export default function App() {
                       visible: {
                         y: 0,
                         opacity: 1,
-                        transition: { type: "spring", stiffness: 120, damping: 14 },
+                        transition: {
+                          type: "spring",
+                          stiffness: 120,
+                          damping: 14,
+                        },
                       },
                     }}
                     className="inline-block"
@@ -685,7 +725,11 @@ export default function App() {
                       visible: {
                         y: 0,
                         opacity: 1,
-                        transition: { type: "spring", stiffness: 120, damping: 14 },
+                        transition: {
+                          type: "spring",
+                          stiffness: 120,
+                          damping: 14,
+                        },
                       },
                     }}
                     className="inline-block"
@@ -698,7 +742,11 @@ export default function App() {
                       visible: {
                         y: 0,
                         opacity: 1,
-                        transition: { type: "spring", stiffness: 120, damping: 14 },
+                        transition: {
+                          type: "spring",
+                          stiffness: 120,
+                          damping: 14,
+                        },
                       },
                     }}
                     className="inline-block text-blue-600 dark:text-blue-400 italic font-serif"
@@ -711,7 +759,11 @@ export default function App() {
                       visible: {
                         y: 0,
                         opacity: 1,
-                        transition: { type: "spring", stiffness: 120, damping: 14 },
+                        transition: {
+                          type: "spring",
+                          stiffness: 120,
+                          damping: 14,
+                        },
                       },
                     }}
                     className="inline-block"
@@ -725,9 +777,9 @@ export default function App() {
                     isDark ? "text-slate-400" : "text-slate-600"
                   }`}
                 >
-                  Indulge in our collection of meticulously curated luxury villas.
-                  Heated pools, private chefs, 24/7 concierge, and bespoke
-                  hospitality crafted to perfection.
+                  Indulge in our collection of meticulously curated luxury
+                  villas. Heated pools, private chefs, 24/7 concierge, and
+                  bespoke hospitality crafted to perfection.
                 </p>
 
                 {/* Sleek Nav Doors */}
@@ -740,29 +792,28 @@ export default function App() {
                           ? "bg-slate-800/80 border-blue-500/50 shadow-lg shadow-blue-950/40"
                           : "bg-blue-50/80 border-blue-300 shadow-md shadow-blue-500/10"
                         : isDark
-                        ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
-                        : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
+                          ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
+                          : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-[9px] font-extrabold text-blue-600 dark:text-blue-400 uppercase mb-1 tracking-[0.2em] font-mono">
-                          Collection Catalog
+                          Turnkey Buyers
                         </p>
                         <p
                           className={`text-sm font-heading font-bold ${
                             isDark ? "text-white" : "text-slate-900"
                           }`}
                         >
-                          Browse Turnkey Villas
+                          Browse Villa Catalog
                         </p>
                         <p
                           className={`text-xs mt-1 font-sans ${
                             isDark ? "text-slate-400" : "text-slate-500"
                           }`}
                         >
-                          Explore verified luxury properties ready to operate &
-                          stay.
+                          Explore verified luxury properties ready to operate &amp; stay.
                         </p>
                       </div>
                       <ArrowRight className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-all" />
@@ -770,36 +821,35 @@ export default function App() {
                   </div>
 
                   <div
-                    onClick={() => setActiveTab("how-it-works")}
+                    onClick={() => setActiveTab("landlords")}
                     className={`p-4 rounded-2xl border cursor-pointer group transition-all duration-300 ${
-                      activeTab === "how-it-works"
+                      activeTab === "landlords"
                         ? isDark
                           ? "bg-slate-800/80 border-blue-500/50 shadow-lg shadow-blue-950/40"
                           : "bg-blue-50/80 border-blue-300 shadow-md shadow-blue-500/10"
                         : isDark
-                        ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
-                        : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
+                          ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
+                          : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-[9px] font-extrabold text-blue-600 dark:text-blue-400 uppercase mb-1 tracking-[0.2em] font-mono">
-                          Turnkey Process
+                          Landlords &amp; Owners
                         </p>
                         <p
                           className={`text-sm font-heading font-bold ${
                             isDark ? "text-white" : "text-slate-900"
                           }`}
                         >
-                          How It Works
+                          Submit Your Property
                         </p>
                         <p
                           className={`text-xs mt-1 font-sans ${
                             isDark ? "text-slate-400" : "text-slate-500"
                           }`}
                         >
-                          4-step guide to locking, verifying, and operating
-                          properties.
+                          Partner with Kaizen for guaranteed rent &amp; turnkey management.
                         </p>
                       </div>
                       <ArrowRight className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-all" />
@@ -807,36 +857,35 @@ export default function App() {
                   </div>
 
                   <div
-                    onClick={() => setActiveTab("experiences")}
+                    onClick={() => setActiveTab("investors")}
                     className={`p-4 rounded-2xl border cursor-pointer group transition-all duration-300 ${
-                      activeTab === "experiences"
+                      activeTab === "investors"
                         ? isDark
                           ? "bg-slate-800/80 border-blue-500/50 shadow-lg shadow-blue-950/40"
                           : "bg-blue-50/80 border-blue-300 shadow-md shadow-blue-500/10"
                         : isDark
-                        ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
-                        : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
+                          ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
+                          : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-[9px] font-extrabold text-blue-600 dark:text-blue-400 uppercase mb-1 tracking-[0.2em] font-mono">
-                          Our Experience
+                          Investors &amp; Capital
                         </p>
                         <p
                           className={`text-sm font-heading font-bold ${
                             isDark ? "text-white" : "text-slate-900"
                           }`}
                         >
-                          Guest Experience
+                          Private Deal Network
                         </p>
                         <p
                           className={`text-xs mt-1 font-sans ${
                             isDark ? "text-slate-400" : "text-slate-500"
                           }`}
                         >
-                          Private infinity pools, gourmet chefs, and custom
-                          catering.
+                          Get priority access to high-yield off-market deal flow.
                         </p>
                       </div>
                       <ArrowRight className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-all" />
@@ -847,7 +896,9 @@ export default function App() {
 
               <div
                 className={`pt-6 sm:pt-8 mt-6 sm:mt-8 border-t flex items-center justify-between text-xs ${
-                  isDark ? "border-slate-800 text-slate-400" : "border-slate-200 text-slate-500"
+                  isDark
+                    ? "border-slate-800 text-slate-400"
+                    : "border-slate-200 text-slate-500"
                 }`}
               >
                 <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400 uppercase tracking-widest font-bold">
@@ -858,7 +909,7 @@ export default function App() {
                     isDark ? "text-white" : "text-slate-800"
                   }`}
                 >
-                  KAIZEN REAL ESTATE
+                  KAIZEN
                 </span>
               </div>
             </motion.section>
@@ -883,6 +934,18 @@ export default function App() {
                       onOpenProspectus={setSelectedDeal}
                       onRateDeal={handleRateDeal}
                       initialFilters={catalogFilters}
+                      triggerNotification={triggerNotification}
+                    />
+                  )}
+                  {activeTab === "landlords" && (
+                    <LandlordsView
+                      onBookCall={() => setShowBookCallModal(true)}
+                      triggerNotification={triggerNotification}
+                    />
+                  )}
+                  {activeTab === "investors" && (
+                    <InvestorsView
+                      onBookCall={() => setShowBookCallModal(true)}
                       triggerNotification={triggerNotification}
                     />
                   )}
@@ -911,27 +974,31 @@ export default function App() {
                             isDark ? "text-slate-400" : "text-slate-600"
                           }`}
                         >
-                          Exclusive columns on luxury real estate curation, interior
-                          design secrets, and guest experience benchmarks.
+                          Exclusive columns on luxury real estate curation,
+                          interior design secrets, and guest experience
+                          benchmarks.
                         </p>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {[
                           {
-                            title: "Curating Kaizen Scottsdale: Inside Our Design Playbook",
+                            title:
+                              "Curating Kaizen Scottsdale: Inside Our Design Playbook",
                             date: "July 18, 2026 • 5 min read",
                             img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80",
                             desc: "How we integrated custom local cactus gardens, heated infinity pools, and warm neutral linens to boost Scottsdale guest satisfaction.",
                           },
                           {
-                            title: "The Gourmet Advantage in Modern Luxury Stays",
+                            title:
+                              "The Gourmet Advantage in Modern Luxury Stays",
                             date: "July 14, 2026 • 7 min read",
                             img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80",
                             desc: "A 5-star trip is more than just handing over a check-in code. We explore how catering to specialized dietary travelers secures top reviews.",
                           },
                           {
-                            title: "Pensacola Coastal Living: High Amenities & Unmatched Comfort",
+                            title:
+                              "Pensacola Coastal Living: High Amenities & Unmatched Comfort",
                             date: "June 29, 2026 • 6 min read",
                             img: "https://images.unsplash.com/photo-1450622238302-a223f43d35fc?auto=format&fit=crop&w=600&q=80",
                             desc: "Coastal luxury requires absolute precision in design and private beach club access.",
@@ -1003,8 +1070,8 @@ export default function App() {
                             isDark ? "text-slate-400" : "text-slate-600"
                           }`}
                         >
-                          Read real testimonials from travelers who have experienced the
-                          Kaizen difference.
+                          Read real testimonials from travelers who have
+                          experienced the Kaizen difference.
                         </p>
                       </div>
 
@@ -1091,10 +1158,10 @@ export default function App() {
                             isDark ? "text-slate-400" : "text-slate-600"
                           }`}
                         >
-                          We believe hospitality lies in custom, invisible luxuries. At
-                          every Kaizen villa, your trip is accompanied by curated
-                          personal services, premium amenities, and dedicated concierge
-                          lines.
+                          We believe hospitality lies in custom, invisible
+                          luxuries. At every Kaizen villa, your trip is
+                          accompanied by curated personal services, premium
+                          amenities, and dedicated concierge lines.
                         </p>
                       </div>
 
@@ -1119,8 +1186,8 @@ export default function App() {
                               isDark ? "text-slate-400" : "text-slate-600"
                             }`}
                           >
-                            Year-round temperature control, resort lighting, and private
-                            cabana loungers.
+                            Year-round temperature control, resort lighting, and
+                            private cabana loungers.
                           </p>
                         </div>
                         <div
@@ -1143,16 +1210,19 @@ export default function App() {
                               isDark ? "text-slate-400" : "text-slate-600"
                             }`}
                           >
-                            Instant WhatsApp communication for dining reservations,
-                            airport transfers, and private chefs.
+                            Instant WhatsApp communication for dining
+                            reservations, airport transfers, and private chefs.
                           </p>
                         </div>
                       </div>
                     </div>
                   )}
 
+                  {/* Drop this in place of the existing `{activeTab === "about" && (...)}` block in App.tsx */}
+
                   {activeTab === "about" && (
                     <div className="space-y-8 animate-fade-in">
+                      {/* About Kaizen */}
                       <div
                         className={`rounded-3xl border p-8 shadow-xl ${
                           isDark
@@ -1161,23 +1231,91 @@ export default function App() {
                         }`}
                       >
                         <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20 font-mono">
-                          The Kaizen Philosophy
+                          About Kaizen
                         </span>
                         <h2
                           className={`text-2xl sm:text-3xl font-extrabold mt-4 font-serif ${
                             isDark ? "text-white" : "text-slate-900"
                           }`}
                         >
-                          Continuous Improvement. Exceptional Hospitality.
+                          Turnkey short term rentals, ready to run.
                         </h2>
-                        <p
-                          className={`text-sm mt-2 leading-relaxed ${
-                            isDark ? "text-slate-400" : "text-slate-600"
+                        <div
+                          className={`mt-4 space-y-4 text-sm leading-relaxed ${
+                            isDark ? "text-slate-300" : "text-slate-600"
                           }`}
                         >
-                          At Kaizen, we merge high-end, culturally-inclusive hospitality
-                          with continuous operational improvement.
-                        </p>
+                          <p>
+                            Kaizen finds short term rental properties that
+                            already work, and hands them to you ready to run.
+                          </p>
+                          <p>
+                            We source landlord furnished units in strong short
+                            term rental markets, verify the numbers against real
+                            occupancy and rate data before we ever bring you a
+                            deal, negotiate the lease, and build out the
+                            listings, pricing, and photos. What you get is a
+                            property that is already vetted, already set up, and
+                            already live, not a spreadsheet of assumptions.
+                          </p>
+                          <p>
+                            We work with buyers who want a turnkey rental
+                            business without doing the legwork themselves, and
+                            with landlords who have a property that fits short
+                            term rental but do not want to run it. Every deal we
+                            bring you shows real numbers: what it costs to
+                            start, and what it is projected to make. We label
+                            projections as projections, and we do not promise a
+                            guaranteed return.
+                          </p>
+                          <p>
+                            Kaizen is named for a person, not just a philosophy:
+                            a close family friend who ran a company by the same
+                            name, and whose way of building something the right
+                            way stuck long before this business existed.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* About Soham */}
+                      <div
+                        className={`rounded-3xl border p-8 shadow-xl ${
+                          isDark
+                            ? "bg-slate-900/70 border-slate-800 apple-specular"
+                            : "bg-white border-slate-200 shadow-slate-200/50"
+                        }`}
+                      >
+                        <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20 font-mono">
+                          About Soham
+                        </span>
+                        <h2
+                          className={`text-2xl sm:text-3xl font-extrabold mt-4 font-serif ${
+                            isDark ? "text-white" : "text-slate-900"
+                          }`}
+                        >
+                          Founder, Kaizen.
+                        </h2>
+                        <div
+                          className={`mt-4 space-y-4 text-sm leading-relaxed ${
+                            isDark ? "text-slate-300" : "text-slate-600"
+                          }`}
+                        >
+                          <p>I am Soham, the founder of Kaizen.</p>
+                          <p>
+                            I got into short term rentals while I was still in
+                            school, starting with a single unit that I ran
+                            myself, verifying every number by hand before I
+                            trusted it. That unit is still how I judge every
+                            deal we bring to buyers today: would I put my own
+                            money into this.
+                          </p>
+                          <p>
+                            I am based in the Chicago area, working toward my
+                            real estate license, and I run Kaizen the way I
+                            would want someone to run it for me: real numbers,
+                            clear costs, and no promises we cannot back up.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -1199,7 +1337,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-md shadow-blue-600/30 border border-white/20 shrink-0">
-              <span className="text-white font-extrabold text-base font-sans">改</span>
+              <span className="text-white font-extrabold text-base font-sans">
+                改
+              </span>
             </div>
             <div>
               <p
@@ -1207,15 +1347,15 @@ export default function App() {
                   isDark ? "text-white" : "text-slate-900"
                 }`}
               >
-                KAIZEN LUXURY ESTATES
+                KAIZEN SHORT TERM RENTALS
               </p>
               <p className="text-blue-600 dark:text-blue-400 text-[10px] tracking-widest font-mono uppercase leading-none mt-0.5 font-bold">
-                PREMIUM VACATION RENTALS
+                TURNKEY SHORT TERM RENTALS
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 font-mono font-bold text-xs">
+          <div className="flex flex-wrap items-center justify-center gap-6 font-mono font-bold text-xs">
             <button
               onClick={() => {
                 setActiveTab("properties");
@@ -1224,6 +1364,24 @@ export default function App() {
               className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               Properties
+            </button>
+            <button
+              onClick={() => {
+                setActiveTab("landlords");
+                window.location.hash = "";
+              }}
+              className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Landlords
+            </button>
+            <button
+              onClick={() => {
+                setActiveTab("investors");
+                window.location.hash = "";
+              }}
+              className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Investors
             </button>
             <button
               onClick={() => {
@@ -1246,10 +1404,17 @@ export default function App() {
           </div>
 
           <p className="text-slate-500 text-xs font-mono text-center md:text-right">
-            © 2026 Kaizen Luxury Real Estate LLC. All rights reserved.
+            © 2026 Kaizen Short Term Rentals LLC. All rights reserved.
           </p>
         </div>
       </footer>
+
+      {/* Book a Call Modal */}
+      <BookCallModal
+        isOpen={showBookCallModal}
+        onClose={() => setShowBookCallModal(false)}
+        triggerNotification={triggerNotification}
+      />
 
       {/* Auth Modal */}
       <AuthModal
@@ -1301,7 +1466,10 @@ export default function App() {
         isOpen={showRateModal}
         onClose={() => setShowRateModal(false)}
         onSuccess={() => {
-          triggerNotification("Thank you! Your stay rating has been recorded.", "success");
+          triggerNotification(
+            "Thank you! Your stay rating has been recorded.",
+            "success",
+          );
         }}
       />
     </div>

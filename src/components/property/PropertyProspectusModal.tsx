@@ -27,7 +27,6 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  // Prevent background scrolling when modal is open
   useEffect(() => {
     if (deal) {
       document.body.style.overflow = 'hidden';
@@ -42,7 +41,6 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
 
   if (!deal) return null;
 
-  // Map incoming Django backend fields or legacy Frontend fields
   const images = deal?.images?.length
     ? deal.images
     : deal?.media?.length
@@ -66,7 +64,6 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
       {deal && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4">
 
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -121,10 +118,10 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
               </button>
             </div>
 
-            {/* Content area */}
+
             <div className="p-6 overflow-y-auto space-y-6 max-h-[600px] no-scrollbar">
 
-              {/* Photo Gallery Viewer */}
+
               <div>
                 <div className="h-64 rounded-2xl overflow-hidden relative border border-slate-800 bg-slate-950">
                   <motion.img
@@ -166,7 +163,7 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
                   </div>
                 </div>
 
-                {/* Thumbnails strip */}
+
                 {images.length > 1 && (
                   <div className="flex gap-2 mt-3 overflow-x-auto pb-1 no-scrollbar">
                     {images.map((img: string, idx: number) => (
@@ -184,8 +181,7 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
                 )}
               </div>
 
-              {/* Book / View on Platforms */}
-              <div
+            <div
                 className={`p-5 rounded-2xl border space-y-3 transition-colors ${
                   isDark
                     ? "bg-slate-800/50 border-slate-700/60"
@@ -244,14 +240,14 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
                         Direct Acquisition Available
                       </span>
                       <p className={`text-xs mt-2 ${isDark ? "text-slate-400" : "text-slate-600"}`}>
-                        This property is exclusively available for direct lock via Kaizen Real Estate.
+                        This property is exclusively available for direct lock via Kaizen.
                       </p>
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Description Overview */}
+
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5 font-mono">
                   Property Overview
@@ -261,7 +257,7 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
                 </p>
               </div>
 
-              {/* Full Specs Table Grid */}
+
               <div
                 className={`p-4 rounded-2xl border transition-colors ${
                   isDark ? "bg-slate-800/50 border-slate-700/60" : "bg-slate-50 border-slate-200"
@@ -310,14 +306,13 @@ export const PropertyProspectusModal: React.FC<PropertyProspectusModalProps> = (
 
             </div>
 
-            {/* Bottom Bar */}
             <div
               className={`p-5 border-t flex flex-wrap items-center justify-between gap-3 ${
                 isDark ? "bg-slate-950/60 border-slate-800" : "bg-slate-50 border-slate-100"
               }`}
             >
               <span className="text-[10px] text-slate-400 font-mono">
-                Kaizen Luxury Estates • Verified Property
+                Kaizen • Verified Property
               </span>
               <div className="flex items-center gap-3">
                 <button
