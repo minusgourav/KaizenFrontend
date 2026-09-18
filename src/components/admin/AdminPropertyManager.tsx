@@ -90,6 +90,8 @@ interface PropertyItem {
   bathrooms: number;
   monthlyRent: string;
   netProfit: string;
+  cashToStart: string;
+  leaseTerm: string;
   occupancyEst: string;
   status: PropertyStatus;
   imageUrl: string;
@@ -131,6 +133,8 @@ const DEFAULT_FORM_STATE = {
   bathrooms: 2,
   monthlyRent: "2400",
   netProfit: "1800",
+  cashToStart: "4800",
+  leaseTerm: "12 Months",
   status: "AVAILABLE" as PropertyStatus,
   imageUrl: "",
   description: "",
@@ -145,6 +149,8 @@ const propertySchema = z.object({
   bathrooms: z.number().min(0.5).max(10),
   monthlyRent: z.string().min(1, "Rent is required"),
   netProfit: z.string().min(1, "Profit is required"),
+  cashToStart: z.string().min(1, "Cash to start is required"),
+  leaseTerm: z.string().min(1, "Lease term is required"),
   status: z.enum([
     "AVAILABLE",
     "OCCUPIED",
@@ -260,6 +266,9 @@ export const AdminPropertyManager: React.FC = () => {
             const rent = p.rent_monthly ?? p.price ?? p.adr ?? 2400;
             const profit =
               p.net_profit_monthly ?? Math.round(Number(rent) * 0.75);
+            const cash =
+              p.cash_to_start ?? Math.round(Number(rent) * 2);
+            const term = p.lease_term || "12 Months";
 
             const mediaUrl =
               p.media?.find((m: any) => !!m?.cdn_url)?.cdn_url ??
@@ -280,6 +289,8 @@ export const AdminPropertyManager: React.FC = () => {
               lng: p.lng ?? null,
               monthlyRent: `$${Number(rent).toLocaleString()}`,
               netProfit: `~$${Number(profit).toLocaleString()}`,
+              cashToStart: `$${Number(cash).toLocaleString()}`,
+              leaseTerm: term,
               occupancyEst: `${60 + (idx % 20)}%`,
               status: API_TO_STATUS[rawStatus] ?? "AVAILABLE",
               imageUrl: mediaUrl || FALLBACK_IMAGE,
@@ -374,15 +385,13 @@ export const AdminPropertyManager: React.FC = () => {
       bathrooms: item.bathrooms,
       monthlyRent: item.monthlyRent.replace(/[^0-9]/g, ""),
       netProfit: item.netProfit.replace(/[^0-9]/g, ""),
+      cashToStart: item.cashToStart.replace(/[^0-9]/g, ""),
+      leaseTerm: item.leaseTerm || "12 Months",
       status: item.status,
       imageUrl: item.imageUrl,
       description: item.description,
       listings: item.listings || [],
     });
-    setImageFiles([]);
-    setImagePreviews([]);
-    setShowPropertyEditorModal(true);
-
     setImageFiles([]);
     setImagePreviews([]);
     setExistingMedia(item.media || []);
@@ -447,6 +456,8 @@ export const AdminPropertyManager: React.FC = () => {
       parseFloat(adminForm.monthlyRent.replace(/[^0-9.]/g, "")) || 2400;
     const profitNum =
       parseFloat(adminForm.netProfit.replace(/[^0-9.]/g, "")) || 1800;
+    const cashNum =
+      parseFloat(adminForm.cashToStart.replace(/[^0-9.]/g, "")) || Math.round(rentNum * 2);
 
     const payload: any = {
       title: adminForm.title,
@@ -457,7 +468,8 @@ export const AdminPropertyManager: React.FC = () => {
       price: rentNum,
       rent_monthly: rentNum,
       net_profit_monthly: profitNum,
-      cash_to_start: Math.round(rentNum * 2),
+      cash_to_start: cashNum,
+      lease_term: adminForm.leaseTerm || "12 Months",
       bedrooms: adminForm.bedrooms,
       bathrooms: adminForm.bathrooms,
       status: STATUS_TO_API[adminForm.status] ?? "active",
@@ -831,6 +843,22 @@ export const AdminPropertyManager: React.FC = () => {
                         {deal.netProfit}
                       </span>
                     </div>
+                    <div>
+                      <span className="text-[9px] text-slate-400 block uppercase">
+                        Cash to Start
+                      </span>
+                      <span className="font-bold text-orange-400">
+                        {deal.cashToStart}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[9px] text-slate-400 block uppercase">
+                        Lease Term
+                      </span>
+                      <span className="text-slate-300 font-semibold">
+                        {deal.leaseTerm}
+                      </span>
+                    </div>
                   </div>
 
                   <div>
@@ -889,22 +917,28 @@ export const AdminPropertyManager: React.FC = () => {
           <table className="w-full text-left text-xs text-slate-300 border-collapse min-w-[720px]">
             <thead>
               <tr className="border-b border-white/10 bg-white/[0.06] font-mono text-[11px] text-slate-300">
-                <th className="py-3.5 px-4 font-bold min-w-[220px]">
+                <th className="py-3.5 px-4 font-bold min-w-[200px]">
                   Property &amp; Address
                 </th>
-                <th className="py-3.5 px-4 font-bold min-w-[140px]">
+                <th className="py-3.5 px-4 font-bold min-w-[130px]">
                   Status / Occupancy
                 </th>
-                <th className="py-3.5 px-4 font-bold min-w-[110px]">
+                <th className="py-3.5 px-4 font-bold min-w-[100px]">
                   Monthly Rent
                 </th>
-                <th className="py-3.5 px-4 font-bold min-w-[130px]">
-                  Net Monthly Profit
+                <th className="py-3.5 px-4 font-bold min-w-[110px]">
+                  Net Profit
                 </th>
-                <th className="py-3.5 px-4 font-bold min-w-[160px]">
+                <th className="py-3.5 px-4 font-bold min-w-[110px]">
+                  Cash to Start
+                </th>
+                <th className="py-3.5 px-4 font-bold min-w-[100px]">
+                  Lease Term
+                </th>
+                <th className="py-3.5 px-4 font-bold min-w-[150px]">
                   Active Platforms
                 </th>
-                <th className="py-3.5 px-4 text-right font-bold min-w-[110px]">
+                <th className="py-3.5 px-4 text-right font-bold min-w-[100px]">
                   Actions
                 </th>
               </tr>
@@ -912,14 +946,14 @@ export const AdminPropertyManager: React.FC = () => {
             <tbody className="divide-y divide-white/5">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="py-10 text-center text-slate-400">
+                  <td colSpan={8} className="py-10 text-center text-slate-400">
                     <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2 text-[#E04F33]" />
                     Loading properties…
                   </td>
                 </tr>
               ) : properties.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-10">
+                  <td colSpan={8} className="py-10">
                     <EmptyState
                       icon={Building}
                       title="No properties found"
@@ -980,6 +1014,12 @@ export const AdminPropertyManager: React.FC = () => {
                       </td>
                       <td className="py-3.5 px-4 font-mono font-extrabold text-emerald-400">
                         {deal.netProfit}
+                      </td>
+                      <td className="py-3.5 px-4 font-mono font-bold text-orange-400">
+                        {deal.cashToStart}
+                      </td>
+                      <td className="py-3.5 px-4 font-mono text-slate-300 text-[11px]">
+                        {deal.leaseTerm}
                       </td>
 
                       <td className="py-3.5 px-4">
@@ -1146,7 +1186,7 @@ export const AdminPropertyManager: React.FC = () => {
             </div>
           </Field>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Field label="Monthly Rent ($)" error={fieldErrors.monthlyRent}>
               <input
                 type="text"
@@ -1169,25 +1209,51 @@ export const AdminPropertyManager: React.FC = () => {
               />
             </Field>
 
-            <Field label="Status">
-              <select
-                value={adminForm.status}
+            <Field label="Cash to Start ($)" error={fieldErrors.cashToStart}>
+              <input
+                type="text"
+                value={adminForm.cashToStart}
                 onChange={(e) =>
-                  setAdminForm({
-                    ...adminForm,
-                    status: e.target.value as PropertyStatus,
-                  })
+                  setAdminForm({ ...adminForm, cashToStart: e.target.value })
+                }
+                className={fieldInputCls(!!fieldErrors.cashToStart)}
+              />
+            </Field>
+
+            <Field label="Lease Term" error={fieldErrors.leaseTerm}>
+              <select
+                value={adminForm.leaseTerm}
+                onChange={(e) =>
+                  setAdminForm({ ...adminForm, leaseTerm: e.target.value })
                 }
                 className="w-full px-3.5 py-2.5 bg-[#0F1014] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-[#E04F33] font-mono"
               >
-                <option value="AVAILABLE">AVAILABLE</option>
-                <option value="OCCUPIED">OCCUPIED</option>
-                <option value="UNDER CONTRACT">UNDER CONTRACT</option>
-                <option value="MAINTENANCE">MAINTENANCE</option>
-                <option value="UNDER REVIEW">UNDER REVIEW</option>
+                <option value="Flex / Monthly">Flex / Monthly</option>
+                <option value="6 Months">6 Months</option>
+                <option value="12 Months">12 Months</option>
+                <option value="24+ Months">24+ Months</option>
               </select>
             </Field>
           </div>
+
+          <Field label="Status">
+            <select
+              value={adminForm.status}
+              onChange={(e) =>
+                setAdminForm({
+                  ...adminForm,
+                  status: e.target.value as PropertyStatus,
+                })
+              }
+              className="w-full px-3.5 py-2.5 bg-[#0F1014] border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-[#E04F33] font-mono"
+            >
+              <option value="AVAILABLE">AVAILABLE</option>
+              <option value="OCCUPIED">OCCUPIED</option>
+              <option value="UNDER CONTRACT">UNDER CONTRACT</option>
+              <option value="MAINTENANCE">MAINTENANCE</option>
+              <option value="UNDER REVIEW">UNDER REVIEW</option>
+            </select>
+          </Field>
           {existingMedia.length > 0 && (
             <Field label={`Current photos (${existingMedia.length})`}>
               <div className="flex flex-wrap gap-2">

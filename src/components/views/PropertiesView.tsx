@@ -23,16 +23,10 @@ export const PropertiesView: React.FC<PropertiesViewProps> = ({
   const [filters, setFilters] = useState<PropertyFilters>(initialFilters || {});
 
   const handleSearch = (search: PropertySearchFilters) => {
-    let parsedCity = undefined;
-
-    if (search.location) {
-      parsedCity = search.location.split(',')[0].trim();
-    }
-
     setFilters((prev) => ({
       ...prev,
-      city: parsedCity,
-      search: search.location || undefined,
+      city: undefined,
+      search: search.location ? search.location.trim() : undefined,
       min_cash_to_start: search.minCashToStart !== "" ? Number(search.minCashToStart) : undefined,
       max_cash_to_start: search.maxCashToStart !== "" ? Number(search.maxCashToStart) : undefined,
       min_net_profit: search.minNetProfit !== "" ? Number(search.minNetProfit) : undefined,

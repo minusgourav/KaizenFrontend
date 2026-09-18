@@ -79,17 +79,17 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
     let min: number | "" = "";
     let max: number | "" = "";
 
-    if (val === "0-10000") {
+    if (val === "0-5000") {
       min = 0;
+      max = 5000;
+    } else if (val === "5000-10000") {
+      min = 5000;
       max = 10000;
     } else if (val === "10000-25000") {
       min = 10000;
       max = 25000;
-    } else if (val === "25000-50000") {
+    } else if (val === "25000+") {
       min = 25000;
-      max = 50000;
-    } else if (val === "50000+") {
-      min = 50000;
       max = "";
     }
 
@@ -105,10 +105,11 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
     const val = e.target.value;
     let min: number | "" = "";
 
-    if (val === "1000+") min = 1000;
+    if (val === "500+") min = 500;
+    else if (val === "1000+") min = 1000;
+    else if (val === "1500+") min = 1500;
     else if (val === "2500+") min = 2500;
     else if (val === "5000+") min = 5000;
-    else if (val === "10000+") min = 10000;
 
     setFilters((prev) => ({
       ...prev,
@@ -185,17 +186,17 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
               <option value="" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
                 Any Cash Required
               </option>
-              <option value="0-10000" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
-                Under $10,000
+              <option value="0-5000" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
+                Under $5,000
+              </option>
+              <option value="5000-10000" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
+                $5,000 - $10,000
               </option>
               <option value="10000-25000" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
                 $10,000 - $25,000
               </option>
-              <option value="25000-50000" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
-                $25,000 - $50,000
-              </option>
-              <option value="50000+" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
-                $50,000+
+              <option value="25000+" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
+                $25,000+
               </option>
             </select>
           </div>
@@ -222,17 +223,20 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
               <option value="" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
                 Any Net Profit
               </option>
+              <option value="500+" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
+                $500+/mo
+              </option>
               <option value="1000+" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
                 $1,000+/mo
+              </option>
+              <option value="1500+" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
+                $1,500+/mo
               </option>
               <option value="2500+" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
                 $2,500+/mo
               </option>
               <option value="5000+" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
                 $5,000+/mo
-              </option>
-              <option value="10000+" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
-                $10,000+/mo
               </option>
             </select>
           </div>
