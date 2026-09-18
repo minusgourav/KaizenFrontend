@@ -69,7 +69,7 @@ const PILL_TONES: Record<PillTone, string> = {
   success: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
   warning: "bg-amber-500/15 text-amber-300 border-amber-500/30",
   danger: "bg-rose-500/15 text-rose-300 border-rose-500/30",
-  info: "bg-sky-500/15 text-sky-300 border-sky-500/30",
+  info: "bg-[#E04F33]/15 text-[#FF8A73] border-[#E04F33]/30",
   brand: "bg-[#E04F33]/15 text-[#FF8A73] border-[#E04F33]/30",
 };
 
@@ -78,7 +78,7 @@ const PILL_DOTS: Record<PillTone, string> = {
   success: "bg-emerald-400",
   warning: "bg-amber-400",
   danger: "bg-rose-400",
-  info: "bg-sky-400",
+  info: "bg-[#FF8A73]",
   brand: "bg-[#FF8A73]",
 };
 

@@ -117,9 +117,9 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({ onSelectDeal, onRa
             >
               <Heart className="w-6 h-6 text-rose-500 fill-rose-500" aria-hidden="true" />
             </motion.span>
-            Saved <span className="text-blue-600 dark:text-blue-400">Favorites</span>
+            Saved <span className="text-[#E04F33]">Favorites</span>
           </h2>
-          <p className="text-xs text-blue-600 dark:text-blue-400 mt-1 font-mono font-semibold">
+          <p className="text-xs text-[#E04F33] mt-1 font-mono font-semibold">
             Your shortlisted arbitrage deals & luxury villas saved for review
           </p>
         </div>

@@ -134,7 +134,7 @@ const PropertyGridContent: React.FC<PropertyGridProps> = ({
           <button
             type="button"
             onClick={() => setVisibleLimit((prev) => prev + BATCH_STEP)}
-            className="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-mono text-xs font-bold uppercase tracking-wider rounded-2xl shadow-lg shadow-blue-600/25 flex items-center gap-2 cursor-pointer transition-all active:scale-95"
+            className="px-8 py-3.5 bg-[#E04F33] hover:bg-[#C87D55] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-2xl shadow-lg shadow-[#E04F33]/25 flex items-center gap-2 cursor-pointer transition-all active:scale-95"
           >
             <span>Load More Properties ({properties.length - visibleLimit} remaining)</span>
             <ChevronDown className="w-4 h-4 animate-bounce" />

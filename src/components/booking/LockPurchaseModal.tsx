@@ -88,8 +88,8 @@ export const LockPurchaseModal: React.FC<LockPurchaseModalProps> = ({
         {/* LOCKING */}
         {step === "LOCKING" && (
           <div className="flex flex-col items-center gap-3 py-8">
-            <Loader2 className="w-8 h-8 text-blue-600 dark:text-blue-400 animate-spin" />
-            <p className="text-xs text-blue-600 dark:text-blue-400 font-mono font-semibold">
+            <Loader2 className="w-8 h-8 text-[#E04F33] dark:text-[#FF8A73] animate-spin" />
+            <p className="text-xs text-[#E04F33] dark:text-[#FF8A73] font-mono font-semibold">
               Locking this property for you...
             </p>
           </div>
@@ -100,13 +100,13 @@ export const LockPurchaseModal: React.FC<LockPurchaseModalProps> = ({
           <div className="space-y-4">
             <div
               className={`flex items-center justify-center gap-2 py-4 rounded-2xl border ${
-                isDark ? "bg-slate-800/60 border-slate-700/60" : "bg-blue-50/70 border-blue-100"
+                isDark ? "bg-[#0F1117] border-white/10" : "bg-orange-50/70 border-orange-100"
               }`}
             >
-              <Clock className="w-4 h-4 text-blue-600 dark:text-blue-400 animate-pulse" />
+              <Clock className="w-4 h-4 text-[#E04F33] dark:text-[#FF8A73] animate-pulse" />
               <span
                 className={`text-2xl font-mono font-bold tabular-nums ${
-                  isDark ? "text-white" : "text-slate-900"
+                  isDark ? "text-white" : "text-stone-900"
                 }`}
               >
                 {formatTime(timeLeft)}
@@ -119,14 +119,14 @@ export const LockPurchaseModal: React.FC<LockPurchaseModalProps> = ({
                 href={booking.payment_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-blue-600/25"
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-[#E04F33] hover:bg-[#C8432A] text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#E04F33]/25"
               >
                 Pay with PayPal
                 <ExternalLink className="w-4 h-4" />
               </a>
             )}
 
-            <div className={`pt-3 border-t ${isDark ? "border-slate-800" : "border-slate-100"}`}>
+            <div className={`pt-3 border-t ${isDark ? "border-white/10" : "border-stone-100"}`}>
               <p className="text-[11px] text-slate-500 mb-2 leading-relaxed">
                 After paying, paste the PayPal transaction ID / reference from your receipt below.
               </p>
@@ -136,16 +136,16 @@ export const LockPurchaseModal: React.FC<LockPurchaseModalProps> = ({
                   value={reference}
                   onChange={(e) => setReference(e.target.value)}
                   placeholder="e.g. 8AB123456C789012D"
-                  className={`w-full px-4 py-2.5 border rounded-xl text-xs font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full px-4 py-2.5 border rounded-xl text-xs font-mono focus:outline-none focus:border-[#E04F33] ${
                     isDark
-                      ? "bg-slate-800/80 border-slate-700 text-white placeholder-slate-500"
-                      : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-500"
+                      : "bg-stone-50 border-stone-200 text-stone-900 placeholder-stone-400"
                   }`}
                 />
                 <button
                   type="submit"
                   disabled={submitting || reference.trim().length < 3}
-                  className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-md shadow-blue-600/20"
+                  className="w-full py-3 bg-[#E04F33] hover:bg-[#C8432A] disabled:opacity-60 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-md shadow-[#E04F33]/20"
                 >
                   {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
                   {submitting ? "Submitting..." : "I've paid — submit for review"}
@@ -165,15 +165,15 @@ export const LockPurchaseModal: React.FC<LockPurchaseModalProps> = ({
         {/* PENDING REVIEW */}
         {step === "PENDING_REVIEW" && (
           <div className="flex flex-col items-center gap-3 py-8 text-center">
-            <Loader2 className="w-8 h-8 text-blue-600 dark:text-blue-400 animate-spin" />
+            <Loader2 className="w-8 h-8 text-[#E04F33] dark:text-[#FF8A73] animate-spin" />
             <div>
-              <p className={`text-sm font-bold ${isDark ? "text-white" : "text-slate-900"}`}>
+              <p className={`text-sm font-bold ${isDark ? "text-white" : "text-stone-900"}`}>
                 Awaiting confirmation
               </p>
               <p className="text-[11px] text-slate-500 mt-1 leading-relaxed max-w-xs">
                 We're verifying your payment
                 {booking?.payment_reference && (
-                  <> (ref: <span className="font-mono text-blue-600 dark:text-blue-400 font-semibold">{booking.payment_reference}</span>)</>
+                  <> (ref: <span className="font-mono text-[#E04F33] dark:text-[#FF8A73] font-semibold">{booking.payment_reference}</span>)</>
                 )}
                 . This page updates automatically once confirmed.
               </p>

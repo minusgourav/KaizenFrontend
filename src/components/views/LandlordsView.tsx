@@ -40,11 +40,11 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
       <div
         className={`rounded-3xl border p-8 shadow-xl ${
           isDark
-            ? "bg-slate-900/70 border-slate-800 apple-specular"
+            ? "bg-[#161922] border-white/10 apple-specular"
             : "bg-white border-slate-200 shadow-slate-200/50"
         }`}
       >
-        <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20 font-mono">
+        <span className="text-[10px] font-extrabold text-[#E04F33] bg-[#E04F33]/10 px-3 py-1 rounded-full uppercase tracking-widest border border-[#E04F33]/20 font-mono">
           Landlord Partner Portal
         </span>
         <h2
@@ -63,9 +63,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
         </p>
 
         {/* Quick Highlights */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-200 dark:border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-500 flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-[#E04F33]/10 border border-[#E04F33]/20 text-[#E04F33] flex items-center justify-center shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
@@ -75,7 +75,7 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-500 flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-[#E04F33]/10 border border-[#E04F33]/20 text-[#E04F33] flex items-center justify-center shrink-0">
               <Building2 className="w-5 h-5" />
             </div>
             <div>
@@ -85,7 +85,7 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-500 flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-[#E04F33]/10 border border-[#E04F33]/20 text-[#E04F33] flex items-center justify-center shrink-0">
               <DollarSign className="w-5 h-5" />
             </div>
             <div>
@@ -100,7 +100,7 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
       <div
         className={`rounded-3xl border p-6 sm:p-8 shadow-xl ${
           isDark
-            ? "bg-slate-900/70 border-slate-800 apple-specular"
+            ? "bg-[#161922] border-white/10 apple-specular"
             : "bg-white border-slate-200 shadow-slate-200/50"
         }`}
       >
@@ -126,9 +126,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                   placeholder="Jane Smith"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white placeholder-slate-600"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-600"
                       : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                   }`}
                 />
@@ -144,9 +144,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                   placeholder="jane@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white placeholder-slate-600"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-600"
                       : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                   }`}
                 />
@@ -162,9 +162,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                   placeholder="(555) 000-1234"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white placeholder-slate-600"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-600"
                       : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                   }`}
                 />
@@ -182,9 +182,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                   placeholder="123 Ocean Drive"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white placeholder-slate-600"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-600"
                       : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                   }`}
                 />
@@ -200,9 +200,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                   placeholder="Pensacola, FL or Scottsdale, AZ"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white placeholder-slate-600"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-600"
                       : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                   }`}
                 />
@@ -217,9 +217,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                 <select
                   value={bedrooms}
                   onChange={(e) => setBedrooms(e.target.value)}
-                  className={`w-full p-3 rounded-xl border text-xs font-mono font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer ${
+                  className={`w-full p-3 rounded-xl border text-xs font-mono font-medium focus:outline-none focus:ring-2 focus:ring-[#E04F33] cursor-pointer ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white"
+                      ? "bg-[#0F1117] border-white/10 text-white"
                       : "bg-slate-50 border-slate-200 text-slate-900"
                   }`}
                 >
@@ -237,9 +237,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                 <select
                   value={furnishing}
                   onChange={(e) => setFurnishing(e.target.value)}
-                  className={`w-full p-3 rounded-xl border text-xs font-mono font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer ${
+                  className={`w-full p-3 rounded-xl border text-xs font-mono font-medium focus:outline-none focus:ring-2 focus:ring-[#E04F33] cursor-pointer ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white"
+                      ? "bg-[#0F1117] border-white/10 text-white"
                       : "bg-slate-50 border-slate-200 text-slate-900"
                   }`}
                 >
@@ -258,9 +258,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                   placeholder="e.g. 3500"
                   value={expectedRent}
                   onChange={(e) => setExpectedRent(e.target.value)}
-                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white placeholder-slate-600"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-600"
                       : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                   }`}
                 />
@@ -276,9 +276,9 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                 placeholder="Mention pool access, HOA regulations, available lease start date, etc."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] ${
                   isDark
-                    ? "bg-slate-950 border-slate-800 text-white placeholder-slate-600"
+                    ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-600"
                     : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                 }`}
               />
@@ -287,7 +287,7 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <button
                 type="submit"
-                className="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl text-xs font-mono uppercase tracking-wider shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 cursor-pointer transition-all hover:scale-105"
+                className="px-8 py-3.5 bg-[#E04F33] hover:bg-[#C87D55] text-white font-bold rounded-2xl text-xs font-mono uppercase tracking-wider shadow-lg shadow-[#E04F33]/30 flex items-center justify-center gap-2 cursor-pointer transition-all hover:scale-105"
               >
                 <Send className="w-4 h-4" />
                 Submit Property Form
@@ -299,7 +299,7 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
                   onClick={onBookCall}
                   className={`px-8 py-3.5 rounded-2xl border text-xs font-bold font-mono transition-all cursor-pointer hover:scale-105 ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-slate-300 hover:bg-slate-800"
+                      ? "bg-[#0F1117] border-white/10 text-slate-300 hover:bg-[#161922]"
                       : "bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200"
                   }`}
                 >
@@ -315,12 +315,12 @@ export const LandlordsView: React.FC<LandlordsViewProps> = ({
             </div>
             <h3 className="text-2xl font-extrabold font-serif">Property Submitted!</h3>
             <p className={`text-xs max-w-md mx-auto leading-relaxed ${isDark ? "text-slate-300" : "text-slate-600"}`}>
-              Thank you, <span className="font-bold text-blue-500">{name}</span>. We have received your property details for{" "}
+              Thank you, <span className="font-bold text-[#E04F33]">{name}</span>. We have received your property details for{" "}
               <span className="font-bold">{address}, {city}</span>. Our team will analyze local STR rates and reach out shortly.
             </p>
             <button
               onClick={() => setSubmitted(false)}
-              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs font-mono uppercase tracking-wider cursor-pointer"
+              className="px-6 py-2.5 bg-[#E04F33] hover:bg-[#C87D55] text-white font-bold rounded-xl text-xs font-mono uppercase tracking-wider cursor-pointer"
             >
               Submit Another Property
             </button>

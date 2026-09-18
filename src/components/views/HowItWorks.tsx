@@ -58,14 +58,14 @@ export const HowItWorks: React.FC<{ onBrowseProperties: () => void }> = ({
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
         className={`rounded-3xl p-8 sm:p-10 border shadow-xl transition-colors ${
           isDark
-            ? "bg-slate-900/80 border-slate-800 shadow-slate-950/40"
+            ? "bg-[#161922] border-white/10 shadow-black/40"
             : "bg-white border-slate-200 shadow-slate-200/50"
         }`}
       >
         <div className="space-y-4 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-500/10 rounded-full border border-blue-500/20">
-            <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" aria-hidden="true" />
-            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest font-mono">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#E04F33]/10 rounded-full border border-[#E04F33]/20">
+            <Sparkles className="w-4 h-4 text-[#E04F33]" aria-hidden="true" />
+            <span className="text-[11px] font-bold text-[#E04F33] uppercase tracking-widest font-mono">
               The Turnkey Acquisition Process
             </span>
           </div>
@@ -75,7 +75,7 @@ export const HowItWorks: React.FC<{ onBrowseProperties: () => void }> = ({
             }`}
           >
             How Kaizen Works for{" "}
-            <span className="text-blue-600 dark:text-blue-400">Turnkey Buyers</span>
+            <span className="text-[#E04F33]">Turnkey Buyers</span>
           </h1>
           <p className={`text-sm leading-relaxed ${isDark ? "text-slate-300" : "text-slate-600"}`}>
             From discovering high-yield luxury villas to securing exclusive
@@ -86,7 +86,7 @@ export const HowItWorks: React.FC<{ onBrowseProperties: () => void }> = ({
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={onBrowseProperties}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-blue-600/25 flex items-center gap-2 font-mono cursor-pointer transition-all"
+            className="px-6 py-3 bg-[#E04F33] hover:bg-[#C87D55] text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-[#E04F33]/25 flex items-center gap-2 font-mono cursor-pointer transition-all"
           >
             <span>Browse Catalog Now</span>
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -97,7 +97,7 @@ export const HowItWorks: React.FC<{ onBrowseProperties: () => void }> = ({
       {/* Steps List */}
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#E04F33]">
             Step-by-Step Guide
           </span>
           <h2
@@ -118,16 +118,16 @@ export const HowItWorks: React.FC<{ onBrowseProperties: () => void }> = ({
                 whileHover={{ y: -4 }}
                 className={`p-8 rounded-3xl border transition-all space-y-4 ${
                   isDark
-                    ? "bg-slate-900/70 border-slate-800 hover:border-blue-500/40"
-                    : "bg-white border-slate-200 hover:border-blue-400 shadow-slate-200/50 shadow-lg"
+                    ? "bg-[#161922] border-white/10 hover:border-[#E04F33]/40"
+                    : "bg-white border-slate-200 hover:border-[#E04F33]/40 shadow-slate-200/50 shadow-lg"
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <div
                     className={`w-12 h-12 rounded-2xl border flex items-center justify-center ${
                       isDark
-                        ? "bg-slate-800 border-slate-700 text-blue-400"
-                        : "bg-blue-50 border-blue-100 text-blue-600"
+                        ? "bg-white/5 border-white/10 text-[#E04F33]"
+                        : "bg-[#E04F33]/10 border-[#E04F33]/20 text-[#E04F33]"
                     }`}
                   >
                     <Icon className="w-6 h-6" aria-hidden="true" />
@@ -142,7 +142,7 @@ export const HowItWorks: React.FC<{ onBrowseProperties: () => void }> = ({
                   </span>
                 </div>
                 <div>
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-mono font-bold mb-2 border border-blue-500/20">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#E04F33]/10 text-[#E04F33] text-[10px] font-mono font-bold mb-2 border border-[#E04F33]/20">
                     {step.badge}
                   </span>
                   <h3
@@ -170,12 +170,12 @@ export const HowItWorks: React.FC<{ onBrowseProperties: () => void }> = ({
       <div
         className={`rounded-3xl border p-8 sm:p-10 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${
           isDark
-            ? "bg-slate-900/80 border-slate-800 shadow-slate-950/40"
+            ? "bg-[#161922] border-white/10 shadow-black/40"
             : "bg-white border-slate-200 shadow-slate-200/50"
         }`}
       >
         <div className="lg:col-span-5 space-y-4">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#E04F33] bg-[#E04F33]/10 px-3 py-1 rounded-full border border-[#E04F33]/20">
             Dedicated Customer Support
           </span>
           <h3
@@ -204,7 +204,7 @@ export const HowItWorks: React.FC<{ onBrowseProperties: () => void }> = ({
         </div>
         <div
           className={`lg:col-span-7 p-6 sm:p-8 rounded-2xl border ${
-            isDark ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
+            isDark ? "bg-[#0F1117] border-white/10" : "bg-slate-50 border-slate-200"
           }`}
         >
           <InquiryForm />

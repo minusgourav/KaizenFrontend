@@ -79,7 +79,7 @@ export const RatePropertyModal: React.FC<RatePropertyModalProps> = ({
           transition={{ type: "spring", stiffness: 300, damping: 26 }}
           className={`rounded-3xl max-w-md w-full border shadow-2xl overflow-hidden relative z-10 p-6 sm:p-8 space-y-6 ${
             isDark
-              ? "bg-slate-900 border-slate-800 text-slate-100 shadow-slate-950/80"
+              ? "bg-[#161922] border-white/10 text-slate-100 shadow-black/80"
               : "bg-white border-slate-200 text-slate-900 shadow-slate-300/50"
           }`}
         >
@@ -104,7 +104,7 @@ export const RatePropertyModal: React.FC<RatePropertyModalProps> = ({
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[10px] font-mono font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E04F33]/10 border border-[#E04F33]/20 text-[#E04F33] text-[10px] font-mono font-bold uppercase tracking-wider">
                   <Building className="w-3 h-3" />
                   <span>Guest Stay Feedback</span>
                 </div>
@@ -117,7 +117,7 @@ export const RatePropertyModal: React.FC<RatePropertyModalProps> = ({
               </div>
 
               {/* Star Rating Selectors */}
-              <div className="space-y-2 text-center py-2 bg-slate-500/5 rounded-2xl border border-slate-500/10 p-4">
+              <div className="space-y-2 text-center py-2 bg-white/5 rounded-2xl border border-white/10 p-4">
                 <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-slate-400">
                   Select Rating (1 to 5 Stars)
                 </p>
@@ -156,7 +156,7 @@ export const RatePropertyModal: React.FC<RatePropertyModalProps> = ({
               {/* Review Comment Box */}
               <div>
                 <label className="block text-xs font-bold font-mono uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1.5">
-                  <MessageSquare className="w-3.5 h-3.5 text-blue-400" />
+                  <MessageSquare className="w-3.5 h-3.5 text-[#E04F33]" />
                   Your Review / Bio Feedback (Optional)
                 </label>
                 <textarea
@@ -164,9 +164,9 @@ export const RatePropertyModal: React.FC<RatePropertyModalProps> = ({
                   value={reviewText}
                   onChange={(e) => setReviewText(e.target.value)}
                   placeholder="Share details about cleanliness, amenities, check-in, or host communication..."
-                  className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+                  className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] transition-colors ${
                     isDark
-                      ? "bg-slate-950 border-slate-800 text-white placeholder-slate-500"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-500"
                       : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
                   }`}
                 />
@@ -175,7 +175,7 @@ export const RatePropertyModal: React.FC<RatePropertyModalProps> = ({
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 font-mono disabled:opacity-50 cursor-pointer transition-all"
+                className="w-full py-3.5 bg-[#E04F33] hover:bg-[#C87D55] text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-[#E04F33]/25 flex items-center justify-center gap-2 font-mono disabled:opacity-50 cursor-pointer transition-all"
               >
                 {submitting ? "Submitting..." : "Submit Review & Rating"}
               </button>

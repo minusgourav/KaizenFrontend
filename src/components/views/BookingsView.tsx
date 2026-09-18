@@ -166,11 +166,11 @@ export const BookingsView: React.FC<BookingsViewProps> = ({
               animate={{ scale: 1, rotate: 0, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 260, damping: 14, delay: 0.1 }}
             >
-              <CalendarCheck className="w-7 h-7 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+              <CalendarCheck className="w-7 h-7 text-[#E04F33]" aria-hidden="true" />
             </motion.span>
-            My <span className="text-blue-600 dark:text-blue-400">Lease Bookings</span>
+            My <span className="text-[#E04F33]">Lease Bookings</span>
           </h1>
-          <p className="text-xs text-blue-600 dark:text-blue-400 mt-1 font-mono font-semibold">
+          <p className="text-xs text-[#E04F33] mt-1 font-mono font-semibold">
             Real-time status of secured villa leases and active hold locks on Kaizen. Rate stayed properties below.
           </p>
         </div>

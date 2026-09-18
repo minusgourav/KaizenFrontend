@@ -24,7 +24,7 @@ const STATE_BADGE: Record<string, string> = {
   locked: "bg-amber-950/90 text-amber-300 border-amber-500/40",
   pending_review: "bg-[#E04F33]/20 text-[#FF8A73] border-[#E04F33]/40",
   purchased: "bg-emerald-950/90 text-emerald-300 border-emerald-500/40",
-  expired: "bg-slate-900/90 text-slate-400 border-slate-700/40",
+  expired: "bg-[#161922] text-slate-400 border-white/10",
   cancelled: "bg-rose-950/90 text-rose-300 border-rose-500/40",
 };
 

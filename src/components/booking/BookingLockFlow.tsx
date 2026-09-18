@@ -100,27 +100,27 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md font-sans">
       <div
         className={`relative w-full max-w-md border rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5 transition-all duration-300 ${
           isDark
-            ? "bg-slate-900/95 border-slate-800 text-slate-100 shadow-blue-950/40"
-            : "bg-white/95 border-slate-200 text-slate-900 shadow-blue-500/10"
+            ? "bg-[#161922] border-white/10 text-stone-100 shadow-black/60"
+            : "bg-white/95 border-stone-200 text-stone-900 shadow-stone-300/40"
         }`}
       >
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-blue-600/15 border border-blue-500/30 flex items-center justify-center shrink-0">
-            <ShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <div className="w-10 h-10 rounded-2xl bg-[#E04F33]/15 border border-[#E04F33]/30 flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-5 h-5 text-[#E04F33] dark:text-[#FF8A73]" />
           </div>
           <div>
             <h3
               className={`text-lg font-bold font-heading ${
-                isDark ? "text-white" : "text-slate-900"
+                isDark ? "text-white" : "text-stone-900"
               }`}
             >
               Complete your lock
             </h3>
-            <p className="text-[11px] text-blue-600 dark:text-blue-400 font-mono font-semibold">
+            <p className="text-[11px] text-[#E04F33] dark:text-[#FF8A73] font-mono font-semibold">
               Booking #{booking.id}
             </p>
           </div>
@@ -132,14 +132,14 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
             <div
               className={`flex items-center justify-center gap-2 py-4 rounded-2xl border ${
                 isDark
-                  ? "bg-slate-800/60 border-slate-700/60"
-                  : "bg-blue-50/70 border-blue-100"
+                  ? "bg-[#0F1117] border-white/10"
+                  : "bg-orange-50/70 border-orange-100"
               }`}
             >
-              <Clock className="w-4 h-4 text-blue-600 dark:text-blue-400 animate-pulse" />
+              <Clock className="w-4 h-4 text-[#E04F33] dark:text-[#FF8A73] animate-pulse" />
               <span
                 className={`text-2xl font-mono font-bold tabular-nums ${
-                  isDark ? "text-white" : "text-slate-900"
+                  isDark ? "text-white" : "text-stone-900"
                 }`}
               >
                 {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
@@ -151,7 +151,7 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
               href={booking.payment_link ?? "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-blue-600/25"
+              className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-[#E04F33] hover:bg-[#C8432A] text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#E04F33]/25"
             >
               Pay with PayPal
               <ExternalLink className="w-4 h-4" />
@@ -159,7 +159,7 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
 
             <div
               className={`pt-3 border-t ${
-                isDark ? "border-slate-800" : "border-slate-100"
+                isDark ? "border-white/10" : "border-stone-100"
               }`}
             >
               <p className="text-[11px] text-slate-500 mb-2.5 leading-relaxed">
@@ -172,10 +172,10 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
                   value={reference}
                   onChange={(e) => setReference(e.target.value)}
                   placeholder="e.g. 8AB123456C789012D"
-                  className={`w-full px-4 py-2.5 border rounded-xl text-xs font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full px-4 py-2.5 border rounded-xl text-xs font-mono focus:outline-none focus:border-[#E04F33] ${
                     isDark
-                      ? "bg-slate-800/80 border-slate-700 text-white placeholder-slate-500"
-                      : "bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400"
+                      ? "bg-[#0F1117] border-white/10 text-white placeholder-slate-500"
+                      : "bg-stone-50 border-stone-200 text-stone-900 placeholder-stone-400"
                   }`}
                 />
                 {submitError && (
@@ -186,7 +186,7 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md shadow-blue-600/20"
+                  className="w-full py-2.5 bg-[#E04F33] hover:bg-[#C8432A] disabled:opacity-60 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md shadow-[#E04F33]/20"
                 >
                   {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
                   {submitting ? "Submitting..." : "I've paid — submit for review"}
@@ -206,18 +206,18 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
         {/* PENDING REVIEW */}
         {booking.state === "pending_review" && (
           <div className="space-y-4 text-center py-4">
-            <Loader2 className="w-8 h-8 text-blue-600 dark:text-blue-400 animate-spin mx-auto" />
+            <Loader2 className="w-8 h-8 text-[#E04F33] dark:text-[#FF8A73] animate-spin mx-auto" />
             <div>
               <p
                 className={`text-sm font-bold ${
-                  isDark ? "text-white" : "text-slate-900"
+                  isDark ? "text-white" : "text-stone-900"
                 }`}
               >
                 Awaiting confirmation
               </p>
               <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
                 We're verifying your payment (ref:{" "}
-                <span className="font-mono text-blue-600 dark:text-blue-400 font-semibold">
+                <span className="font-mono text-[#E04F33] dark:text-[#FF8A73] font-semibold">
                   {booking.payment_reference}
                 </span>
                 ). This usually takes a few minutes — this page will update automatically.
@@ -233,7 +233,7 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
             <div>
               <p
                 className={`text-sm font-bold ${
-                  isDark ? "text-white" : "text-slate-900"
+                  isDark ? "text-white" : "text-stone-900"
                 }`}
               >
                 Payment confirmed!
@@ -246,8 +246,8 @@ export const BookingLockFlow: React.FC<BookingLockFlowProps> = ({
               onClick={onClose}
               className={`mt-2 px-5 py-2 border rounded-xl text-xs font-bold transition-all ${
                 isDark
-                  ? "bg-slate-800 hover:bg-slate-700 border-slate-700 text-slate-200"
-                  : "bg-slate-100 hover:bg-slate-200 border-slate-200 text-slate-800"
+                  ? "bg-[#0F1117] hover:bg-stone-800 border-white/10 text-slate-200"
+                  : "bg-stone-100 hover:bg-stone-200 border-stone-200 text-stone-800"
               }`}
             >
               Close

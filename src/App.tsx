@@ -203,44 +203,44 @@ export default function App() {
 
   const notificationStyles: Record<string, string> = {
     success: isDark
-      ? "bg-slate-900/95 border-emerald-500/40 text-emerald-300"
+      ? "bg-[#161922]/95 border-emerald-500/40 text-emerald-300"
       : "bg-white/95 border-emerald-500/40 text-emerald-700 shadow-xl",
     error: isDark
-      ? "bg-slate-900/95 border-rose-500/40 text-rose-300"
+      ? "bg-[#161922]/95 border-rose-500/40 text-rose-300"
       : "bg-white/95 border-rose-500/40 text-rose-700 shadow-xl",
     info: isDark
-      ? "bg-slate-900/95 border-blue-500/40 text-blue-300"
-      : "bg-white/95 border-blue-500/40 text-blue-700 shadow-xl",
+      ? "bg-[#161922]/95 border-[#E04F33]/40 text-[#FF8A73]"
+      : "bg-white/95 border-[#E04F33]/40 text-[#E04F33] shadow-xl",
   };
 
   return (
     <div
-      className={`min-h-screen font-sans flex flex-col relative selection:bg-blue-600 selection:text-white transition-colors duration-300 ${
-        isDark ? "bg-[#090D16] text-slate-100" : "bg-[#F8FAFC] text-slate-900"
+      className={`min-h-screen font-sans flex flex-col relative selection:bg-[#E04F33] selection:text-white transition-colors duration-300 ${
+        isDark ? "bg-[#0F1117] text-stone-100" : "bg-[#FAF8F5] text-stone-900"
       }`}
     >
       {/* 1. Ambient Mesh Gradient Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div
-          className={`absolute inset-0 ${isDark ? "bg-[#090D16]" : "bg-[#F8FAFC]"}`}
+          className={`absolute inset-0 ${isDark ? "bg-[#0F1117]" : "bg-[#FAF8F5]"}`}
         />
         <motion.div
           className={`absolute -top-[12%] -left-[12%] w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] rounded-full blur-[130px] ${
-            isDark ? "bg-blue-600/15" : "bg-blue-500/10"
+            isDark ? "bg-[#E04F33]/15" : "bg-[#E04F33]/10"
           }`}
           animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className={`absolute -bottom-[12%] -right-[12%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] rounded-full blur-[140px] ${
-            isDark ? "bg-indigo-600/15" : "bg-indigo-400/10"
+            isDark ? "bg-amber-600/15" : "bg-amber-400/10"
           }`}
           animate={{ x: [0, -25, 0], y: [0, -15, 0] }}
           transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
         />
         <div
           className={`absolute top-[35%] right-[10%] w-[45vw] h-[45vw] max-w-[550px] max-h-[550px] rounded-full blur-[130px] pointer-events-none ${
-            isDark ? "bg-sky-600/10" : "bg-sky-400/10"
+            isDark ? "bg-orange-600/10" : "bg-orange-400/10"
           }`}
         />
       </div>
@@ -249,11 +249,11 @@ export default function App() {
       {showSplash && (
         <div
           className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center p-6 ${
-            isDark ? "bg-[#090D16]" : "bg-slate-50"
+            isDark ? "bg-[#0F1117]" : "bg-[#FAF8F5]"
           } ${splashFading ? "animate-splash-fade-out" : "opacity-100"}`}
         >
           <div className="relative flex flex-col items-center gap-6">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-0.5 shadow-2xl shadow-blue-600/40 border border-white/20 animate-kaizen-logo flex items-center justify-center">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#E04F33] to-[#C87D55] p-0.5 shadow-2xl shadow-[#E04F33]/40 border border-white/20 animate-kaizen-logo flex items-center justify-center">
               <span className="text-white font-extrabold text-2xl font-sans">
                 改
               </span>
@@ -262,18 +262,18 @@ export default function App() {
             <div className="text-center space-y-1">
               <h2
                 className={`text-xl font-heading font-extrabold tracking-[0.25em] uppercase ${
-                  isDark ? "text-white" : "text-slate-900"
+                  isDark ? "text-white" : "text-stone-900"
                 }`}
               >
                 KAIZEN ESTATES
               </h2>
-              <p className="text-[10px] font-mono text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em] font-bold">
+              <p className="text-[10px] font-mono text-[#E04F33] dark:text-[#FF8A73] uppercase tracking-[0.3em] font-bold">
                 Bespoke Luxury Stays
               </p>
             </div>
 
-            <div className="w-48 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden mt-2">
-              <div className="h-full bg-blue-600 rounded-full animate-kaizen-bar" />
+            <div className="w-48 h-1 bg-stone-200 dark:bg-stone-800 rounded-full overflow-hidden mt-2">
+              <div className="h-full bg-[#E04F33] rounded-full animate-kaizen-bar" />
             </div>
           </div>
         </div>
@@ -305,8 +305,8 @@ export default function App() {
       <header
         className={`sticky top-0 z-40 backdrop-blur-2xl border-b shadow-sm transition-colors duration-300 ${
           isDark
-            ? "bg-[#090D16]/80 border-slate-800/80 shadow-black/40 apple-specular"
-            : "bg-white/80 border-slate-200/80 shadow-slate-200/50"
+            ? "bg-[#0F1117]/90 border-white/10 shadow-black/40 apple-specular"
+            : "bg-white/90 border-stone-200 shadow-stone-200/50"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative z-10">
@@ -320,7 +320,7 @@ export default function App() {
             <motion.div
               whileHover={{ rotate: 6, scale: 1.06 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/30 border border-white/20"
+              className="w-10 h-10 bg-gradient-to-br from-[#E04F33] to-[#C87D55] rounded-xl flex items-center justify-center shadow-lg shadow-[#E04F33]/30 border border-white/20"
             >
               <span className="text-white font-extrabold text-base font-sans">
                 改
@@ -329,7 +329,7 @@ export default function App() {
             <div>
               <span
                 className={`font-extrabold text-xl tracking-[0.08em] leading-none block font-heading ${
-                  isDark ? "text-white" : "text-slate-900"
+                  isDark ? "text-white" : "text-stone-900"
                 }`}
               >
                 KAIZEN
@@ -349,17 +349,17 @@ export default function App() {
                   activeTab === item.key
                     ? isDark
                       ? "text-white"
-                      : "text-blue-600"
+                      : "text-[#E04F33]"
                     : isDark
                       ? "text-slate-400 hover:text-white"
-                      : "text-slate-500 hover:text-slate-900"
+                      : "text-stone-500 hover:text-stone-900"
                 }`}
               >
                 {item.label}
                 {activeTab === item.key && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute left-0 right-0 -bottom-[1px] h-[2.5px] bg-blue-600 dark:bg-blue-500 rounded-full"
+                    className="absolute left-0 right-0 -bottom-[1px] h-[2.5px] bg-[#E04F33] dark:bg-[#FF8A73] rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}
@@ -384,8 +384,8 @@ export default function App() {
                     ? "text-rose-400 bg-rose-950/40 border-rose-500/40"
                     : "text-rose-600 bg-rose-50 border-rose-200"
                   : isDark
-                    ? "text-slate-300 hover:text-rose-400 hover:bg-slate-800/60 border-slate-700/60"
-                    : "text-slate-600 hover:text-rose-600 hover:bg-slate-100 border-slate-200"
+                    ? "text-slate-300 hover:text-rose-400 hover:bg-slate-800/60 border-white/10"
+                    : "text-stone-600 hover:text-rose-600 hover:bg-stone-100 border-stone-200"
               }`}
             >
               <Heart
@@ -403,7 +403,7 @@ export default function App() {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ type: "spring", stiffness: 500, damping: 20 }}
-                    className="absolute -top-0.5 -right-0.5 bg-blue-600 text-white font-mono text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white dark:border-slate-900"
+                    className="absolute -top-0.5 -right-0.5 bg-[#E04F33] text-white font-mono text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white dark:border-[#0F1117]"
                   >
                     {favorites.length}
                   </motion.span>
@@ -427,13 +427,13 @@ export default function App() {
                     <img
                       src={user.avatarUrl}
                       alt={user.name || "User"}
-                      className="w-8 h-8 rounded-full border border-blue-500 object-cover shrink-0"
+                      className="w-8 h-8 rounded-full border border-[#E04F33] object-cover shrink-0"
                       onError={(e) => {
                         (e.target as HTMLImageElement).style.display = "none";
                       }}
                     />
                   ) : (
-                    <div className="w-8 h-8 rounded-full border border-blue-500/40 bg-blue-500/15 flex items-center justify-center text-[11px] font-black text-blue-600 dark:text-blue-400 shrink-0 select-none">
+                    <div className="w-8 h-8 rounded-full border border-[#E04F33]/40 bg-[#E04F33]/15 flex items-center justify-center text-[11px] font-black text-[#E04F33] dark:text-[#FF8A73] shrink-0 select-none">
                       {(
                         user?.name?.[0] ||
                         user?.first_name?.[0] ||
@@ -444,7 +444,7 @@ export default function App() {
                   )}
                   <span
                     className={`text-xs font-bold hidden sm:inline truncate max-w-[100px] ${
-                      isDark ? "text-white" : "text-slate-800"
+                      isDark ? "text-white" : "text-stone-800"
                     }`}
                   >
                     {user?.name ||
@@ -463,13 +463,13 @@ export default function App() {
                       transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
                       className={`absolute right-0 mt-2 w-56 border rounded-2xl p-2 shadow-2xl z-50 backdrop-blur-2xl origin-top-right ${
                         isDark
-                          ? "bg-slate-900/95 border-slate-800 text-white"
-                          : "bg-white/95 border-slate-200 text-slate-900 shadow-xl"
+                          ? "bg-[#161922]/95 border-white/10 text-white"
+                          : "bg-white/95 border-stone-200 text-stone-900 shadow-xl"
                       }`}
                     >
                       <div
                         className={`px-3 py-2 border-b mb-1 ${
-                          isDark ? "border-slate-800" : "border-slate-100"
+                          isDark ? "border-white/10" : "border-stone-100"
                         }`}
                       >
                         <p className="text-xs font-bold truncate">
@@ -486,9 +486,9 @@ export default function App() {
                             window.location.hash = "admin";
                             setUserDropdownOpen(false);
                           }}
-                          className="w-full text-left px-3 py-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:bg-blue-500/10 rounded-xl flex items-center gap-2 border border-blue-500/20 my-1 transition-colors"
+                          className="w-full text-left px-3 py-2 text-xs font-bold text-[#E04F33] dark:text-[#FF8A73] hover:bg-[#E04F33]/10 rounded-xl flex items-center gap-2 border border-[#E04F33]/20 my-1 transition-colors"
                         >
-                          <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />{" "}
+                          <ShieldCheck className="w-4 h-4 text-[#E04F33] dark:text-[#FF8A73]" />{" "}
                           Admin Workspace
                         </button>
                       )}
@@ -498,10 +498,10 @@ export default function App() {
                           setUserDropdownOpen(false);
                         }}
                         className={`w-full text-left px-3 py-2 text-xs font-medium rounded-xl flex items-center gap-2 transition-colors ${
-                          isDark ? "hover:bg-slate-800" : "hover:bg-slate-100"
+                          isDark ? "hover:bg-slate-800" : "hover:bg-stone-100"
                         }`}
                       >
-                        <LayoutDashboard className="w-4 h-4 text-blue-600 dark:text-blue-400" />{" "}
+                        <LayoutDashboard className="w-4 h-4 text-[#E04F33] dark:text-[#FF8A73]" />{" "}
                         Dashboard
                       </button>
                       <button
@@ -511,7 +511,7 @@ export default function App() {
                           setActiveTab("properties");
                         }}
                         className={`w-full text-left px-3 py-2 text-xs font-medium text-rose-500 hover:bg-rose-500/10 rounded-xl flex items-center gap-2 mt-1 border-t transition-colors ${
-                          isDark ? "border-slate-800" : "border-slate-100"
+                          isDark ? "border-white/10" : "border-stone-100"
                         }`}
                       >
                         <LogOut className="w-4 h-4" /> Sign Out
@@ -525,7 +525,7 @@ export default function App() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.96 }}
                 onClick={() => setShowAuthModal(true)}
-                className="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full text-xs font-bold tracking-wider uppercase shadow-lg shadow-blue-600/25 flex items-center gap-1.5 transition-all"
+                className="px-5 py-2.5 bg-gradient-to-r from-[#E04F33] to-[#C87D55] hover:from-[#C8432A] hover:to-[#B06742] text-white rounded-full text-xs font-bold tracking-wider uppercase shadow-lg shadow-[#E04F33]/25 flex items-center gap-1.5 transition-all"
               >
                 <UserIcon className="w-3.5 h-3.5" /> Sign In
               </motion.button>
@@ -538,33 +538,33 @@ export default function App() {
       <div
         className={`py-3 border-b relative overflow-hidden select-none flex items-center z-10 transition-colors ${
           isDark
-            ? "bg-slate-900/60 border-slate-800/60 text-slate-300"
-            : "bg-slate-100/80 border-slate-200 text-slate-700"
+            ? "bg-[#161922]/60 border-white/10 text-slate-300"
+            : "bg-stone-100/80 border-stone-200 text-stone-700"
         }`}
       >
         <div className="flex whitespace-nowrap text-[9px] md:text-xs font-bold uppercase tracking-[0.14em]">
           <div className="inline-flex items-center shrink-0 gap-8 px-4 animate-marquee-ltr">
             <span>HEATED PRIVATE INFINITY POOLS</span>
-            <span className="text-blue-600 dark:text-blue-400">✦</span>
+            <span className="text-[#E04F33] dark:text-[#FF8A73]">✦</span>
             <span>24/7 PERSONAL CONCIERGE SERVICES</span>
-            <span className="text-blue-600 dark:text-blue-400">✦</span>
+            <span className="text-[#E04F33] dark:text-[#FF8A73]">✦</span>
             <span>DIRECT PLATFORM BOOKINGS (AIRBNB, VRBO, BOOKING.COM)</span>
-            <span className="text-blue-600 dark:text-blue-400">✦</span>
+            <span className="text-[#E04F33] dark:text-[#FF8A73]">✦</span>
             <span>SCOTTSDALE & PENSACOLA LUXURY ESTATES</span>
-            <span className="text-blue-600 dark:text-blue-400">✦</span>
+            <span className="text-[#E04F33] dark:text-[#FF8A73]">✦</span>
           </div>
           <div
             className="inline-flex items-center shrink-0 gap-8 px-4 animate-marquee-ltr"
             aria-hidden="true"
           >
             <span>HEATED PRIVATE INFINITY POOLS</span>
-            <span className="text-blue-600 dark:text-blue-400">✦</span>
+            <span className="text-[#E04F33] dark:text-[#FF8A73]">✦</span>
             <span>24/7 PERSONAL CONCIERGE SERVICES</span>
-            <span className="text-blue-600 dark:text-blue-400">✦</span>
+            <span className="text-[#E04F33] dark:text-[#FF8A73]">✦</span>
             <span>DIRECT PLATFORM BOOKINGS (AIRBNB, VRBO, BOOKING.COM)</span>
-            <span className="text-blue-600 dark:text-blue-400">✦</span>
+            <span className="text-[#E04F33] dark:text-[#FF8A73]">✦</span>
             <span>SCOTTSDALE & PENSACOLA LUXURY ESTATES</span>
-            <span className="text-blue-600 dark:text-blue-400">✦</span>
+            <span className="text-[#E04F33] dark:text-[#FF8A73]">✦</span>
           </div>
         </div>
       </div>
@@ -590,12 +590,10 @@ export default function App() {
               onClick={() => setActiveTab(tab)}
               className={`relative px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap capitalize border transition-all ${
                 activeTab === tab
-                  ? isDark
-                    ? "bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-600/30"
-                    : "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/20"
+                  ? "bg-[#E04F33] text-white border-[#E04F33] shadow-md shadow-[#E04F33]/30"
                   : isDark
-                    ? "bg-slate-900/60 border-slate-800 text-slate-300"
-                    : "bg-white border-slate-200 text-slate-700"
+                    ? "bg-[#161922]/60 border-white/10 text-slate-300"
+                    : "bg-white border-stone-200 text-stone-700"
               }`}
             >
               {tab.replace("-", " ")}
@@ -670,19 +668,19 @@ export default function App() {
               }}
               className={`hidden lg:flex lg:col-span-4 rounded-3xl p-6 sm:p-8 border shadow-xl flex-col justify-between min-h-0 lg:min-h-[520px] relative overflow-hidden transition-all ${
                 isDark
-                  ? "bg-slate-900/70 border-slate-800 shadow-slate-950/50 apple-specular"
-                  : "bg-white/80 border-slate-200/80 shadow-slate-200/50"
+                  ? "bg-[#161922]/90 border-white/10 shadow-black/50 apple-specular"
+                  : "bg-white/80 border-stone-200/80 shadow-stone-200/50"
               }`}
             >
               <div>
                 <div
                   className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-6 border ${
                     isDark
-                      ? "bg-blue-950/40 border-blue-800/40 text-blue-300"
-                      : "bg-blue-50 border-blue-200 text-blue-700"
+                      ? "bg-[#E04F33]/15 border-[#E04F33]/30 text-[#FF8A73]"
+                      : "bg-orange-50 border-orange-200 text-orange-800"
                   }`}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 animate-pulse" />
+                  <Sparkles className="w-3.5 h-3.5 text-[#E04F33] dark:text-[#FF8A73] animate-pulse" />
                   <span className="text-[9px] font-bold tracking-[0.2em] uppercase font-mono">
                     Kaizen Luxury Collection
                   </span>
@@ -699,7 +697,7 @@ export default function App() {
                     },
                   }}
                   className={`text-2xl sm:text-4xl font-display font-extrabold leading-tight tracking-tight mb-4 flex flex-wrap gap-x-2 ${
-                    isDark ? "text-white" : "text-slate-900"
+                    isDark ? "text-white" : "text-stone-900"
                   }`}
                 >
                   <motion.span
@@ -749,7 +747,7 @@ export default function App() {
                         },
                       },
                     }}
-                    className="inline-block text-blue-600 dark:text-blue-400 italic font-serif"
+                    className="inline-block text-[#E04F33] dark:text-[#FF8A73] italic font-serif"
                   >
                     unforgettable
                   </motion.span>
@@ -774,7 +772,7 @@ export default function App() {
 
                 <p
                   className={`text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8 font-sans ${
-                    isDark ? "text-slate-400" : "text-slate-600"
+                    isDark ? "text-slate-400" : "text-stone-600"
                   }`}
                 >
                   Indulge in our collection of meticulously curated luxury
@@ -789,34 +787,34 @@ export default function App() {
                     className={`p-4 rounded-2xl border cursor-pointer group transition-all duration-300 ${
                       activeTab === "properties"
                         ? isDark
-                          ? "bg-slate-800/80 border-blue-500/50 shadow-lg shadow-blue-950/40"
-                          : "bg-blue-50/80 border-blue-300 shadow-md shadow-blue-500/10"
+                          ? "bg-[#161922] border-[#E04F33]/50 shadow-lg shadow-[#E04F33]/20"
+                          : "bg-orange-50/80 border-orange-300 shadow-md shadow-orange-500/10"
                         : isDark
-                          ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
-                          : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
+                          ? "bg-[#0F1117]/60 border-white/10 hover:border-white/20 hover:bg-[#161922]/60"
+                          : "bg-stone-50/60 border-stone-200 hover:border-stone-300 hover:bg-stone-100/60"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-[9px] font-extrabold text-blue-600 dark:text-blue-400 uppercase mb-1 tracking-[0.2em] font-mono">
+                        <p className="text-[9px] font-extrabold text-[#E04F33] dark:text-[#FF8A73] uppercase mb-1 tracking-[0.2em] font-mono">
                           Turnkey Buyers
                         </p>
                         <p
                           className={`text-sm font-heading font-bold ${
-                            isDark ? "text-white" : "text-slate-900"
+                            isDark ? "text-white" : "text-stone-900"
                           }`}
                         >
                           Browse Villa Catalog
                         </p>
                         <p
                           className={`text-xs mt-1 font-sans ${
-                            isDark ? "text-slate-400" : "text-slate-500"
+                            isDark ? "text-slate-400" : "text-stone-500"
                           }`}
                         >
                           Explore verified luxury properties ready to operate &amp; stay.
                         </p>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-all" />
+                      <ArrowRight className="w-4 h-4 text-[#E04F33] dark:text-[#FF8A73] group-hover:translate-x-1 transition-all" />
                     </div>
                   </div>
 
@@ -825,34 +823,34 @@ export default function App() {
                     className={`p-4 rounded-2xl border cursor-pointer group transition-all duration-300 ${
                       activeTab === "landlords"
                         ? isDark
-                          ? "bg-slate-800/80 border-blue-500/50 shadow-lg shadow-blue-950/40"
-                          : "bg-blue-50/80 border-blue-300 shadow-md shadow-blue-500/10"
+                          ? "bg-[#161922] border-[#E04F33]/50 shadow-lg shadow-[#E04F33]/20"
+                          : "bg-orange-50/80 border-orange-300 shadow-md shadow-orange-500/10"
                         : isDark
-                          ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
-                          : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
+                          ? "bg-[#0F1117]/60 border-white/10 hover:border-white/20 hover:bg-[#161922]/60"
+                          : "bg-stone-50/60 border-stone-200 hover:border-stone-300 hover:bg-stone-100/60"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-[9px] font-extrabold text-blue-600 dark:text-blue-400 uppercase mb-1 tracking-[0.2em] font-mono">
+                        <p className="text-[9px] font-extrabold text-[#E04F33] dark:text-[#FF8A73] uppercase mb-1 tracking-[0.2em] font-mono">
                           Landlords &amp; Owners
                         </p>
                         <p
                           className={`text-sm font-heading font-bold ${
-                            isDark ? "text-white" : "text-slate-900"
+                            isDark ? "text-white" : "text-stone-900"
                           }`}
                         >
                           Submit Your Property
                         </p>
                         <p
                           className={`text-xs mt-1 font-sans ${
-                            isDark ? "text-slate-400" : "text-slate-500"
+                            isDark ? "text-slate-400" : "text-stone-500"
                           }`}
                         >
                           Partner with Kaizen for guaranteed rent &amp; turnkey management.
                         </p>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-all" />
+                      <ArrowRight className="w-4 h-4 text-[#E04F33] dark:text-[#FF8A73] group-hover:translate-x-1 transition-all" />
                     </div>
                   </div>
 
@@ -861,34 +859,34 @@ export default function App() {
                     className={`p-4 rounded-2xl border cursor-pointer group transition-all duration-300 ${
                       activeTab === "investors"
                         ? isDark
-                          ? "bg-slate-800/80 border-blue-500/50 shadow-lg shadow-blue-950/40"
-                          : "bg-blue-50/80 border-blue-300 shadow-md shadow-blue-500/10"
+                          ? "bg-[#161922] border-[#E04F33]/50 shadow-lg shadow-[#E04F33]/20"
+                          : "bg-orange-50/80 border-orange-300 shadow-md shadow-orange-500/10"
                         : isDark
-                          ? "bg-slate-900/40 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50"
-                          : "bg-slate-50/60 border-slate-200 hover:border-slate-300 hover:bg-slate-100/60"
+                          ? "bg-[#0F1117]/60 border-white/10 hover:border-white/20 hover:bg-[#161922]/60"
+                          : "bg-stone-50/60 border-stone-200 hover:border-stone-300 hover:bg-stone-100/60"
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-[9px] font-extrabold text-blue-600 dark:text-blue-400 uppercase mb-1 tracking-[0.2em] font-mono">
+                        <p className="text-[9px] font-extrabold text-[#E04F33] dark:text-[#FF8A73] uppercase mb-1 tracking-[0.2em] font-mono">
                           Investors &amp; Capital
                         </p>
                         <p
                           className={`text-sm font-heading font-bold ${
-                            isDark ? "text-white" : "text-slate-900"
+                            isDark ? "text-white" : "text-stone-900"
                           }`}
                         >
                           Private Deal Network
                         </p>
                         <p
                           className={`text-xs mt-1 font-sans ${
-                            isDark ? "text-slate-400" : "text-slate-500"
+                            isDark ? "text-slate-400" : "text-stone-500"
                           }`}
                         >
                           Get priority access to high-yield off-market deal flow.
                         </p>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-all" />
+                      <ArrowRight className="w-4 h-4 text-[#E04F33] dark:text-[#FF8A73] group-hover:translate-x-1 transition-all" />
                     </div>
                   </div>
                 </div>
@@ -897,16 +895,16 @@ export default function App() {
               <div
                 className={`pt-6 sm:pt-8 mt-6 sm:mt-8 border-t flex items-center justify-between text-xs ${
                   isDark
-                    ? "border-slate-800 text-slate-400"
-                    : "border-slate-200 text-slate-500"
+                    ? "border-white/10 text-slate-400"
+                    : "border-stone-200 text-stone-500"
                 }`}
               >
-                <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400 uppercase tracking-widest font-bold">
+                <span className="font-mono text-[10px] text-[#E04F33] dark:text-[#FF8A73] uppercase tracking-widest font-bold">
                   Airbtics Verified
                 </span>
                 <span
                   className={`font-bold font-heading tracking-wider ${
-                    isDark ? "text-white" : "text-slate-800"
+                    isDark ? "text-white" : "text-stone-800"
                   }`}
                 >
                   KAIZEN
@@ -955,23 +953,23 @@ export default function App() {
                       <div
                         className={`rounded-3xl border p-8 shadow-xl ${
                           isDark
-                            ? "bg-slate-900/70 border-slate-800 apple-specular"
-                            : "bg-white border-slate-200 shadow-slate-200/50"
+                            ? "bg-[#161922]/90 border-white/10 apple-specular"
+                            : "bg-white border-stone-200 shadow-stone-200/50"
                         }`}
                       >
-                        <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20 font-mono">
+                        <span className="text-[10px] font-extrabold text-[#E04F33] dark:text-[#FF8A73] bg-[#E04F33]/10 px-3 py-1 rounded-full uppercase tracking-widest border border-[#E04F33]/20 font-mono">
                           Kaizen Editorial
                         </span>
                         <h2
                           className={`text-2xl sm:text-3xl font-extrabold mt-4 font-serif ${
-                            isDark ? "text-white" : "text-slate-900"
+                            isDark ? "text-white" : "text-stone-900"
                           }`}
                         >
-                          The Art of Luxury Vacation Rentals & Design
+                          The Art of Luxury Vacation Rentals &amp; Design
                         </h2>
                         <p
                           className={`text-sm mt-2 leading-relaxed ${
-                            isDark ? "text-slate-400" : "text-slate-600"
+                            isDark ? "text-slate-400" : "text-stone-600"
                           }`}
                         >
                           Exclusive columns on luxury real estate curation,
@@ -1008,8 +1006,8 @@ export default function App() {
                             key={idx}
                             className={`rounded-2xl border overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-lg ${
                               isDark
-                                ? "bg-slate-900/70 border-slate-800 hover:border-blue-500/40"
-                                : "bg-white border-slate-200 hover:border-blue-300 shadow-slate-200/50"
+                                ? "bg-[#161922]/90 border-white/10 hover:border-[#E04F33]/40"
+                                : "bg-white border-stone-200 hover:border-orange-300 shadow-stone-200/50"
                             }`}
                           >
                             <div>
@@ -1021,19 +1019,19 @@ export default function App() {
                                 />
                               </div>
                               <div className="p-5 space-y-2">
-                                <p className="text-[10px] text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider font-mono">
+                                <p className="text-[10px] text-[#E04F33] dark:text-[#FF8A73] font-bold uppercase tracking-wider font-mono">
                                   {post.date}
                                 </p>
                                 <h3
                                   className={`font-extrabold text-base ${
-                                    isDark ? "text-white" : "text-slate-900"
+                                    isDark ? "text-white" : "text-stone-900"
                                   }`}
                                 >
                                   {post.title}
                                 </h3>
                                 <p
                                   className={`text-xs leading-relaxed line-clamp-3 ${
-                                    isDark ? "text-slate-400" : "text-slate-600"
+                                    isDark ? "text-slate-400" : "text-stone-600"
                                   }`}
                                 >
                                   {post.desc}
@@ -1051,23 +1049,23 @@ export default function App() {
                       <div
                         className={`rounded-3xl border p-8 shadow-xl ${
                           isDark
-                            ? "bg-slate-900/70 border-slate-800 apple-specular"
-                            : "bg-white border-slate-200 shadow-slate-200/50"
+                            ? "bg-[#161922]/90 border-white/10 apple-specular"
+                            : "bg-white border-stone-200 shadow-stone-200/50"
                         }`}
                       >
-                        <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20 font-mono">
+                        <span className="text-[10px] font-extrabold text-[#E04F33] dark:text-[#FF8A73] bg-[#E04F33]/10 px-3 py-1 rounded-full uppercase tracking-widest border border-[#E04F33]/20 font-mono">
                           Guest Chronicles
                         </span>
                         <h2
                           className={`text-2xl sm:text-3xl font-extrabold mt-4 font-serif ${
-                            isDark ? "text-white" : "text-slate-900"
+                            isDark ? "text-white" : "text-stone-900"
                           }`}
                         >
                           The Stories Behind Kaizen
                         </h2>
                         <p
                           className={`text-sm mt-2 leading-relaxed ${
-                            isDark ? "text-slate-400" : "text-slate-600"
+                            isDark ? "text-slate-400" : "text-stone-600"
                           }`}
                         >
                           Read real testimonials from travelers who have
@@ -1096,29 +1094,29 @@ export default function App() {
                             key={idx}
                             className={`p-6 rounded-2xl border flex flex-col justify-between space-y-4 shadow-lg ${
                               isDark
-                                ? "bg-slate-900/70 border-slate-800"
-                                : "bg-white border-slate-200 shadow-slate-200/50"
+                                ? "bg-[#161922]/90 border-white/10"
+                                : "bg-white border-stone-200 shadow-stone-200/50"
                             }`}
                           >
                             <p
                               className={`text-xs leading-relaxed italic ${
-                                isDark ? "text-slate-300" : "text-slate-700"
+                                isDark ? "text-slate-300" : "text-stone-700"
                               }`}
                             >
                               {story.quote}
                             </p>
                             <div
                               className={`flex items-center gap-3 pt-4 border-t ${
-                                isDark ? "border-slate-800" : "border-slate-100"
+                                isDark ? "border-white/10" : "border-stone-100"
                               }`}
                             >
-                              <div className="w-10 h-10 rounded-full bg-blue-600/15 text-blue-600 dark:text-blue-400 font-bold flex items-center justify-center font-mono text-xs border border-blue-500/30">
+                              <div className="w-10 h-10 rounded-full bg-[#E04F33]/15 text-[#E04F33] dark:text-[#FF8A73] font-bold flex items-center justify-center font-mono text-xs border border-[#E04F33]/30">
                                 {story.initials}
                               </div>
                               <div>
                                 <p
                                   className={`font-extrabold text-xs ${
-                                    isDark ? "text-white" : "text-slate-900"
+                                    isDark ? "text-white" : "text-stone-900"
                                   }`}
                                 >
                                   {story.name}
@@ -1139,23 +1137,23 @@ export default function App() {
                       <div
                         className={`rounded-3xl border p-8 shadow-xl ${
                           isDark
-                            ? "bg-slate-900/70 border-slate-800 apple-specular"
-                            : "bg-white border-slate-200 shadow-slate-200/50"
+                            ? "bg-[#161922]/90 border-white/10 apple-specular"
+                            : "bg-white border-stone-200 shadow-stone-200/50"
                         }`}
                       >
-                        <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20 font-mono">
+                        <span className="text-[10px] font-extrabold text-[#E04F33] dark:text-[#FF8A73] bg-[#E04F33]/10 px-3 py-1 rounded-full uppercase tracking-widest border border-[#E04F33]/20 font-mono">
                           The Kaizen Signature
                         </span>
                         <h2
                           className={`text-2xl sm:text-3xl font-extrabold mt-4 font-serif ${
-                            isDark ? "text-white" : "text-slate-900"
+                            isDark ? "text-white" : "text-stone-900"
                           }`}
                         >
                           Elevating Travel into Artistry
                         </h2>
                         <p
                           className={`text-sm mt-2 leading-relaxed ${
-                            isDark ? "text-slate-400" : "text-slate-600"
+                            isDark ? "text-slate-400" : "text-stone-600"
                           }`}
                         >
                           We believe hospitality lies in custom, invisible
@@ -1169,21 +1167,21 @@ export default function App() {
                         <div
                           className={`p-6 rounded-2xl border space-y-3 shadow-lg ${
                             isDark
-                              ? "bg-slate-900/70 border-slate-800"
-                              : "bg-white border-slate-200 shadow-slate-200/50"
+                              ? "bg-[#161922]/90 border-white/10"
+                              : "bg-white border-stone-200 shadow-stone-200/50"
                           }`}
                         >
-                          <Sparkles className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                          <Sparkles className="w-6 h-6 text-[#E04F33] dark:text-[#FF8A73]" />
                           <h3
                             className={`font-extrabold text-base font-serif ${
-                              isDark ? "text-white" : "text-slate-900"
+                              isDark ? "text-white" : "text-stone-900"
                             }`}
                           >
                             Heated Infinity Pools
                           </h3>
                           <p
                             className={`text-xs leading-relaxed ${
-                              isDark ? "text-slate-400" : "text-slate-600"
+                              isDark ? "text-slate-400" : "text-stone-600"
                             }`}
                           >
                             Year-round temperature control, resort lighting, and
@@ -1193,21 +1191,21 @@ export default function App() {
                         <div
                           className={`p-6 rounded-2xl border space-y-3 shadow-lg ${
                             isDark
-                              ? "bg-slate-900/70 border-slate-800"
-                              : "bg-white border-slate-200 shadow-slate-200/50"
+                              ? "bg-[#161922]/90 border-white/10"
+                              : "bg-white border-stone-200 shadow-stone-200/50"
                           }`}
                         >
-                          <Award className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                          <Award className="w-6 h-6 text-[#E04F33] dark:text-[#FF8A73]" />
                           <h3
                             className={`font-extrabold text-base font-serif ${
-                              isDark ? "text-white" : "text-slate-900"
+                              isDark ? "text-white" : "text-stone-900"
                             }`}
                           >
                             24/7 Concierge Service
                           </h3>
                           <p
                             className={`text-xs leading-relaxed ${
-                              isDark ? "text-slate-400" : "text-slate-600"
+                              isDark ? "text-slate-400" : "text-stone-600"
                             }`}
                           >
                             Instant WhatsApp communication for dining
@@ -1218,31 +1216,29 @@ export default function App() {
                     </div>
                   )}
 
-                  {/* Drop this in place of the existing `{activeTab === "about" && (...)}` block in App.tsx */}
-
                   {activeTab === "about" && (
                     <div className="space-y-8 animate-fade-in">
                       {/* About Kaizen */}
                       <div
                         className={`rounded-3xl border p-8 shadow-xl ${
                           isDark
-                            ? "bg-slate-900/70 border-slate-800 apple-specular"
-                            : "bg-white border-slate-200 shadow-slate-200/50"
+                            ? "bg-[#161922]/90 border-white/10 apple-specular"
+                            : "bg-white border-stone-200 shadow-stone-200/50"
                         }`}
                       >
-                        <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20 font-mono">
+                        <span className="text-[10px] font-extrabold text-[#E04F33] dark:text-[#FF8A73] bg-[#E04F33]/10 px-3 py-1 rounded-full uppercase tracking-widest border border-[#E04F33]/20 font-mono">
                           About Kaizen
                         </span>
                         <h2
                           className={`text-2xl sm:text-3xl font-extrabold mt-4 font-serif ${
-                            isDark ? "text-white" : "text-slate-900"
+                            isDark ? "text-white" : "text-stone-900"
                           }`}
                         >
                           Turnkey short term rentals, ready to run.
                         </h2>
                         <div
                           className={`mt-4 space-y-4 text-sm leading-relaxed ${
-                            isDark ? "text-slate-300" : "text-slate-600"
+                            isDark ? "text-slate-300" : "text-stone-600"
                           }`}
                         >
                           <p>
@@ -1281,23 +1277,23 @@ export default function App() {
                       <div
                         className={`rounded-3xl border p-8 shadow-xl ${
                           isDark
-                            ? "bg-slate-900/70 border-slate-800 apple-specular"
-                            : "bg-white border-slate-200 shadow-slate-200/50"
+                            ? "bg-[#161922]/90 border-white/10 apple-specular"
+                            : "bg-white border-stone-200 shadow-stone-200/50"
                         }`}
                       >
-                        <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-500/20 font-mono">
+                        <span className="text-[10px] font-extrabold text-[#E04F33] dark:text-[#FF8A73] bg-[#E04F33]/10 px-3 py-1 rounded-full uppercase tracking-widest border border-[#E04F33]/20 font-mono">
                           About Soham
                         </span>
                         <h2
                           className={`text-2xl sm:text-3xl font-extrabold mt-4 font-serif ${
-                            isDark ? "text-white" : "text-slate-900"
+                            isDark ? "text-white" : "text-stone-900"
                           }`}
                         >
                           Founder, Kaizen.
                         </h2>
                         <div
                           className={`mt-4 space-y-4 text-sm leading-relaxed ${
-                            isDark ? "text-slate-300" : "text-slate-600"
+                            isDark ? "text-slate-300" : "text-stone-600"
                           }`}
                         >
                           <p>I am Soham, the founder of Kaizen.</p>
@@ -1330,13 +1326,13 @@ export default function App() {
       <footer
         className={`backdrop-blur-xl border-t mt-16 py-10 transition-colors duration-300 relative z-10 ${
           isDark
-            ? "bg-slate-900/60 border-slate-800/80"
-            : "bg-white/80 border-slate-200 shadow-sm"
+            ? "bg-[#161922]/90 border-white/10"
+            : "bg-white/80 border-stone-200 shadow-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-md shadow-blue-600/30 border border-white/20 shrink-0">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#E04F33] to-[#C87D55] rounded-xl flex items-center justify-center shadow-md shadow-[#E04F33]/30 border border-white/20 shrink-0">
               <span className="text-white font-extrabold text-base font-sans">
                 改
               </span>
@@ -1344,12 +1340,12 @@ export default function App() {
             <div>
               <p
                 className={`font-extrabold text-sm tracking-wide font-serif ${
-                  isDark ? "text-white" : "text-slate-900"
+                  isDark ? "text-white" : "text-stone-900"
                 }`}
               >
                 KAIZEN SHORT TERM RENTALS
               </p>
-              <p className="text-blue-600 dark:text-blue-400 text-[10px] tracking-widest font-mono uppercase leading-none mt-0.5 font-bold">
+              <p className="text-[#E04F33] dark:text-[#FF8A73] text-[10px] tracking-widest font-mono uppercase leading-none mt-0.5 font-bold">
                 TURNKEY SHORT TERM RENTALS
               </p>
             </div>
@@ -1361,7 +1357,7 @@ export default function App() {
                 setActiveTab("properties");
                 window.location.hash = "";
               }}
-              className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-stone-500 hover:text-[#E04F33] dark:hover:text-[#FF8A73] transition-colors"
             >
               Properties
             </button>
@@ -1370,7 +1366,7 @@ export default function App() {
                 setActiveTab("landlords");
                 window.location.hash = "";
               }}
-              className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-stone-500 hover:text-[#E04F33] dark:hover:text-[#FF8A73] transition-colors"
             >
               Landlords
             </button>
@@ -1379,7 +1375,7 @@ export default function App() {
                 setActiveTab("investors");
                 window.location.hash = "";
               }}
-              className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-stone-500 hover:text-[#E04F33] dark:hover:text-[#FF8A73] transition-colors"
             >
               Investors
             </button>
@@ -1388,7 +1384,7 @@ export default function App() {
                 setActiveTab("experiences");
                 window.location.hash = "";
               }}
-              className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-stone-500 hover:text-[#E04F33] dark:hover:text-[#FF8A73] transition-colors"
             >
               Experience
             </button>
@@ -1397,13 +1393,13 @@ export default function App() {
                 setActiveTab("about");
                 window.location.hash = "";
               }}
-              className="text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="text-stone-500 hover:text-[#E04F33] dark:hover:text-[#FF8A73] transition-colors"
             >
               About Us
             </button>
           </div>
 
-          <p className="text-slate-500 text-xs font-mono text-center md:text-right">
+          <p className="text-stone-500 text-xs font-mono text-center md:text-right">
             © 2026 Kaizen Short Term Rentals LLC. All rights reserved.
           </p>
         </div>

@@ -50,8 +50,8 @@ const TOAST_STYLES: Record<ToastTone, { icon: React.ElementType; cls: string; ic
   },
   info: {
     icon: Info,
-    cls: "border-sky-500/30 bg-sky-950/80",
-    iconCls: "text-sky-400",
+    cls: "border-[#E04F33]/30 bg-[#161922]/90",
+    iconCls: "text-[#E04F33]",
   },
 };
 

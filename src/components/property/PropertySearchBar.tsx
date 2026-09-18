@@ -148,7 +148,7 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
             isDark ? "focus-within:bg-slate-800/50" : "focus-within:bg-slate-50"
           }`}
         >
-          <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+          <MapPin className="w-4 h-4 text-[#E04F33] shrink-0" />
           <div className="flex flex-col min-w-0 w-full">
             <span className="text-[9px] uppercase tracking-widest text-slate-400 font-mono font-bold">
               Market / City
@@ -171,7 +171,7 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
             isDark ? "focus-within:bg-slate-800/50" : "focus-within:bg-slate-50"
           }`}
         >
-          <Wallet className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+          <Wallet className="w-4 h-4 text-[#E04F33] shrink-0" />
           <div className="flex flex-col w-full">
             <span className="text-[9px] uppercase tracking-widest text-slate-400 font-mono font-bold">
               Cash to Start
@@ -248,7 +248,7 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
             isDark ? "focus-within:bg-slate-800/50" : "focus-within:bg-slate-50"
           }`}
         >
-          <Clock className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+          <Clock className="w-4 h-4 text-[#E04F33] shrink-0" />
           <div className="flex flex-col w-full">
             <span className="text-[9px] uppercase tracking-widest text-slate-400 font-mono font-bold">
               Lease Term
@@ -289,7 +289,7 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
             onClick={() => setShowAdvanced((p) => !p)}
             className={`p-2.5 rounded-xl border transition-all ${
               showAdvanced
-                ? "bg-blue-600/15 border-blue-500/40 text-blue-600 dark:text-blue-400"
+                ? "bg-[#E04F33]/15 border-[#E04F33]/40 text-[#E04F33]"
                 : isDark
                 ? "bg-slate-800/60 border-slate-700 text-slate-400 hover:text-white"
                 : "bg-slate-100 border-slate-200 text-slate-600 hover:text-slate-900"
@@ -317,7 +317,7 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white text-xs font-bold uppercase tracking-widest shadow-md shadow-blue-600/25 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E04F33] hover:bg-[#C87D55] disabled:opacity-40 text-white text-xs font-bold uppercase tracking-widest shadow-md shadow-[#E04F33]/25 transition-all cursor-pointer"
           >
             {loading ? (
               <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -340,7 +340,7 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
         >
           {/* Bedrooms */}
           <label className="flex items-center gap-2">
-            <BedDouble className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+            <BedDouble className="w-3.5 h-3.5 text-[#E04F33] shrink-0" />
             <div className="flex flex-col">
               <span className="text-[9px] uppercase tracking-widest text-slate-400 font-mono font-bold">
                 Beds
@@ -352,14 +352,14 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
                   isDark ? "text-white" : "text-slate-900"
                 }`}
               >
-                <option value="" className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}>
+                <option value="" className={isDark ? "bg-[#161922] text-white" : "bg-white text-slate-900"}>
                   Any Beds
                 </option>
                 {[1, 2, 3, 4, 5, 6].map((n) => (
                   <option
                     key={n}
                     value={n}
-                    className={isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"}
+                    className={isDark ? "bg-[#161922] text-white" : "bg-white text-slate-900"}
                   >
                     {n}+ beds
                   </option>
@@ -368,11 +368,11 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
             </div>
           </label>
 
-          <div className={`w-px h-8 ${isDark ? "bg-slate-800" : "bg-slate-200"}`} />
+          <div className={`w-px h-8 ${isDark ? "bg-white/10" : "bg-slate-200"}`} />
 
           {/* Min Rent */}
           <label className="flex items-center gap-2 min-w-[120px]">
-            <DollarSign className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+            <DollarSign className="w-3.5 h-3.5 text-[#E04F33] shrink-0" />
             <div className="flex flex-col">
               <span className="text-[9px] uppercase tracking-widest text-slate-400 font-mono font-bold">
                 Min Rent
@@ -390,11 +390,11 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
             </div>
           </label>
 
-          <div className={`w-px h-8 ${isDark ? "bg-slate-800" : "bg-slate-200"}`} />
+          <div className={`w-px h-8 ${isDark ? "bg-white/10" : "bg-slate-200"}`} />
 
           {/* Max Rent */}
           <label className="flex items-center gap-2 min-w-[120px]">
-            <DollarSign className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+            <DollarSign className="w-3.5 h-3.5 text-[#E04F33] shrink-0" />
             <div className="flex flex-col">
               <span className="text-[9px] uppercase tracking-widest text-slate-400 font-mono font-bold">
                 Max Rent
@@ -412,11 +412,11 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
             </div>
           </label>
 
-          <div className={`w-px h-8 ${isDark ? "bg-slate-800" : "bg-slate-200"}`} />
+          <div className={`w-px h-8 ${isDark ? "bg-white/10" : "bg-slate-200"}`} />
 
           {/* Sort By */}
           <label className="flex items-center gap-2">
-            <ArrowUpDown className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+            <ArrowUpDown className="w-3.5 h-3.5 text-[#E04F33] shrink-0" />
             <div className="flex flex-col">
               <span className="text-[9px] uppercase tracking-widest text-slate-400 font-mono font-bold">
                 Sort by
@@ -450,7 +450,7 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
           {/* Active Filter Chips */}
           <div className="flex flex-wrap gap-1.5 ml-auto">
             {filters.cashRange && (
-              <span className="px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-600 dark:text-blue-400 text-[10px] font-mono">
+              <span className="px-2.5 py-1 rounded-full bg-[#E04F33]/10 border border-[#E04F33]/30 text-[#E04F33] text-[10px] font-mono">
                 Cash: {filters.cashRange}
               </span>
             )}
@@ -465,7 +465,7 @@ export const PropertySearchBar: React.FC<PropertySearchBarProps> = ({
               </span>
             )}
             {filters.bedrooms && (
-              <span className="px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-600 dark:text-blue-400 text-[10px] font-mono">
+              <span className="px-2.5 py-1 rounded-full bg-[#E04F33]/10 border border-[#E04F33]/30 text-[#E04F33] text-[10px] font-mono">
                 {filters.bedrooms}+ beds
               </span>
             )}

@@ -88,9 +88,9 @@ export const InquiryForm: React.FC = () => {
             required
             value={form.name}
             onChange={(e) => updateField("name", e.target.value)}
-            className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+            className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] transition-colors ${
               isDark
-                ? "bg-slate-900 border-slate-800 text-white placeholder-slate-500"
+                ? "bg-[#161922] border-white/10 text-white placeholder-slate-500"
                 : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
             }`}
           />
@@ -108,9 +108,9 @@ export const InquiryForm: React.FC = () => {
             required
             value={form.email}
             onChange={(e) => updateField("email", e.target.value)}
-            className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+            className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] transition-colors ${
               isDark
-                ? "bg-slate-900 border-slate-800 text-white placeholder-slate-500"
+                ? "bg-[#161922] border-white/10 text-white placeholder-slate-500"
                 : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
             }`}
           />
@@ -129,9 +129,9 @@ export const InquiryForm: React.FC = () => {
             id="inq-intent"
             value={form.intent}
             onChange={(e) => updateField("intent", e.target.value)}
-            className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono transition-colors cursor-pointer ${
+            className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] font-mono transition-colors cursor-pointer ${
               isDark
-                ? "bg-slate-900 border-slate-800 text-white"
+                ? "bg-[#161922] border-white/10 text-white"
                 : "bg-white border-slate-200 text-slate-900"
             }`}
           >
@@ -160,9 +160,9 @@ export const InquiryForm: React.FC = () => {
             id="inq-market"
             value={form.preferredMarket}
             onChange={(e) => updateField("preferredMarket", e.target.value)}
-            className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono transition-colors cursor-pointer ${
+            className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] font-mono transition-colors cursor-pointer ${
               isDark
-                ? "bg-slate-900 border-slate-800 text-white"
+                ? "bg-[#161922] border-white/10 text-white"
                 : "bg-white border-slate-200 text-slate-900"
             }`}
           >
@@ -186,9 +186,9 @@ export const InquiryForm: React.FC = () => {
           rows={3}
           value={form.message}
           onChange={(e) => updateField("message", e.target.value)}
-          className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
+          className={`w-full px-3.5 py-2.5 border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-[#E04F33] transition-colors ${
             isDark
-              ? "bg-slate-900 border-slate-800 text-white placeholder-slate-500"
+              ? "bg-[#161922] border-white/10 text-white placeholder-slate-500"
               : "bg-white border-slate-200 text-slate-900 placeholder-slate-400"
           }`}
         />
@@ -199,7 +199,7 @@ export const InquiryForm: React.FC = () => {
         whileTap={{ scale: submitting ? 1 : 0.98 }}
         type="submit"
         disabled={submitting}
-        className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 font-mono disabled:opacity-50 cursor-pointer transition-all"
+        className="w-full py-3 bg-[#E04F33] hover:bg-[#C87D55] text-white font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-[#E04F33]/25 flex items-center justify-center gap-2 font-mono disabled:opacity-50 cursor-pointer transition-all"
       >
         <Send className="w-4 h-4" aria-hidden="true" />
         {submitting ? "Submitting…" : "Submit Acquisition Inquiry"}

@@ -83,7 +83,7 @@ const SettingsPanel: React.FC = () => (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       {[
         { icon: Database, label: "Database", value: "Supabase (PostGIS)", tone: "text-emerald-400" },
-        { icon: KeyRound, label: "API Host", value: "127.0.0.1:8000", tone: "text-sky-400" },
+        { icon: KeyRound, label: "API Host", value: "127.0.0.1:8000", tone: "text-[#E04F33]" },
         { icon: Bell, label: "Notifications", value: "Email + in-app", tone: "text-[#FF8A73]" },
       ].map(({ icon: Icon, label, value, tone }) => (
         <div key={label} className="p-4 rounded-2xl bg-white/5 border border-white/10">

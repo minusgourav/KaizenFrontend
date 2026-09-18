@@ -25,8 +25,8 @@ const STATE_CONFIG: Record<
   pending_review: {
     label: "Pending Review",
     icon: <Clock className="w-3.5 h-3.5" />,
-    classes: "bg-blue-500/10 text-blue-300 border-blue-500/25",
-    dotClass: "bg-blue-400 animate-pulse",
+    classes: "bg-[#E04F33]/10 text-[#FF8A73] border-[#E04F33]/25",
+    dotClass: "bg-[#E04F33] animate-pulse",
   },
   purchased: {
     label: "Purchased",
