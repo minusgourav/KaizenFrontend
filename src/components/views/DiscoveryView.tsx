@@ -23,7 +23,7 @@ export const DiscoveryPage: React.FC = () => {
             Find Your <span className="text-[#E04F33]">Luxury Property</span>
           </h1>
           <p className="text-slate-400 text-sm font-mono">
-            Search available listings · Filter by dates, beds, and budget
+            Search turnkey listings · Filter by market, cash to start, net profit, and lease term
           </p>
         </div>
 
@@ -40,8 +40,6 @@ export const DiscoveryPage: React.FC = () => {
           loading={loading}
           error={error}
           searched={searched}
-          checkIn={activeFilters?.checkIn}
-          checkOut={activeFilters?.checkOut}
           onSelect={(property) => {
             console.log("Selected:", property);
           }}

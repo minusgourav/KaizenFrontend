@@ -24,12 +24,15 @@ export const usePropertySearch = () => {
 
       if (filters.location.trim()) apiFilters.search = filters.location.trim();
 
-      if (filters.checkIn)         apiFilters.check_in  = filters.checkIn;
-      if (filters.checkOut)        apiFilters.check_out = filters.checkOut;
-      if (filters.bedrooms !== "") apiFilters.bedrooms  = Number(filters.bedrooms);
-      if (filters.minRent !== "")  apiFilters.min_rent  = Number(filters.minRent);
-      if (filters.maxRent !== "")  apiFilters.max_rent  = Number(filters.maxRent);
-      if (filters.sort)            apiFilters.sort      = filters.sort;
+      if (filters.minCashToStart !== "") apiFilters.min_cash_to_start = Number(filters.minCashToStart);
+      if (filters.maxCashToStart !== "") apiFilters.max_cash_to_start = Number(filters.maxCashToStart);
+      if (filters.minNetProfit !== "")   apiFilters.min_net_profit   = Number(filters.minNetProfit);
+      if (filters.maxNetProfit !== "")   apiFilters.max_net_profit   = Number(filters.maxNetProfit);
+      if (filters.leaseTerm)             apiFilters.lease_term       = filters.leaseTerm;
+      if (filters.bedrooms !== "")       apiFilters.bedrooms         = Number(filters.bedrooms);
+      if (filters.minRent !== "")        apiFilters.min_rent         = Number(filters.minRent);
+      if (filters.maxRent !== "")        apiFilters.max_rent         = Number(filters.maxRent);
+      if (filters.sort)                  apiFilters.sort             = filters.sort;
 
       const data = await propertyService.getProperties(apiFilters, {
         signal: abortRef.current.signal,

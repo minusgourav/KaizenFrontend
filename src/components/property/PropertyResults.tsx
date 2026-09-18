@@ -7,17 +7,7 @@ interface Props {
   loading: boolean;
   error: string | null;
   searched: boolean;
-  checkIn?: string;
-  checkOut?: string;
   onSelect?: (property: Property) => void;
-}
-
-function fmt(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
 }
 
 export const PropertySearchResults: React.FC<Props> = ({
@@ -25,8 +15,6 @@ export const PropertySearchResults: React.FC<Props> = ({
   loading,
   error,
   searched,
-  checkIn,
-  checkOut,
   onSelect,
 }) => {
   if (loading) {
@@ -52,7 +40,7 @@ export const PropertySearchResults: React.FC<Props> = ({
       <div className="flex flex-col items-center justify-center py-20 gap-3 text-slate-500">
         <Home className="w-10 h-10" />
         <p className="text-sm font-mono">
-          Enter a location or dates to search properties
+          Enter a market or select filters to search deal opportunities
         </p>
       </div>
     );
@@ -63,12 +51,10 @@ export const PropertySearchResults: React.FC<Props> = ({
       <div className="flex flex-col items-center justify-center py-20 gap-3 text-slate-500">
         <SearchX className="w-10 h-10" />
         <p className="text-sm font-mono font-bold text-white">
-          No properties available
+          No deal opportunities found
         </p>
         <p className="text-xs font-mono">
-          {checkIn && checkOut
-            ? `No available properties for ${fmt(checkIn)} → ${fmt(checkOut)}`
-            : "Try adjusting your filters"}
+          Try adjusting your market location or financial criteria
         </p>
       </div>
     );
@@ -76,20 +62,12 @@ export const PropertySearchResults: React.FC<Props> = ({
 
   return (
     <div className="space-y-4 animate-fade-in">
-      {/* Result count + date range */}
+      {/* Result count */}
       <div className="flex items-center justify-between">
         <p className="text-xs text-slate-400 font-mono">
           <span className="text-white font-bold">{results.length}</span> propert
           {results.length === 1 ? "y" : "ies"} found
         </p>
-        {checkIn && checkOut && (
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#E04F33]/10 border border-[#E04F33]/20">
-            <CalendarCheck className="w-3 h-3 text-[#E04F33]" />
-            <span className="text-[10px] font-mono text-[#FF8A73]">
-              {fmt(checkIn)} → {fmt(checkOut)}
-            </span>
-          </div>
-        )}
       </div>
 
       {/* Grid */}
@@ -98,8 +76,6 @@ export const PropertySearchResults: React.FC<Props> = ({
           <PropertyCard
             key={property.id}
             property={property}
-            checkIn={checkIn}
-            checkOut={checkOut}
             onSelect={onSelect}
           />
         ))}
@@ -111,10 +87,8 @@ export const PropertySearchResults: React.FC<Props> = ({
 // ── Individual card ─────────────────────────────────────────────────────────
 const PropertyCard: React.FC<{
   property: Property;
-  checkIn?: string;
-  checkOut?: string;
   onSelect?: (p: Property) => void;
-}> = ({ property, checkIn, checkOut, onSelect }) => {
+}> = ({ property, onSelect }) => {
   const p = property as any;
   const mediaUrl =
     p.media?.find((m: any) => !!m?.cdn_url)?.cdn_url ??
@@ -195,14 +169,6 @@ const PropertyCard: React.FC<{
             </span>
           </div>
         </div>
-
-        {/* Date range if set */}
-        {checkIn && checkOut && (
-          <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-400">
-            <CalendarCheck className="w-3 h-3 text-[#E04F33]" />
-            {fmt(checkIn)} → {fmt(checkOut)}
-          </div>
-        )}
 
         {/* Platform Links (FIXED) */}
         {p.listings?.length > 0 && (

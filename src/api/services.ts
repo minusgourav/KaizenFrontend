@@ -39,10 +39,15 @@ export interface PropertyFilters {
   bathrooms?: number;
   min_rent?: number;
   max_rent?: number;
+  min_cash_to_start?: number;
+  max_cash_to_start?: number;
+  min_net_profit?: number;
+  max_net_profit?: number;
+  lease_term?: string;
   check_in?: string;
   check_out?: string;
   status?: string;
-  sort?: "newest" | "rent_low" | "rent_high" | "profit";
+  sort?: "newest" | "rent_low" | "rent_high" | "profit" | "cash_low";
   search?: string;
   property_type?: string;
 }
